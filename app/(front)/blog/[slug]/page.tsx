@@ -1,40 +1,197 @@
+import prisma from '@/lib/prisma';
+import { Book, Heart, Pen, PencilRuler, Pin } from 'lucide-react';
 import { MDXRemote } from 'next-mdx-remote-client/rsc';
+import Image from 'next/image';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { ReactNode } from 'react';
+import { Sidebar } from './sidebar';
+import { isAtLeastOneDayAfter } from '@/lib/date';
+import { Metadata } from 'next';
 
-export default async function BlogPage() {
-	const markdownContent = `
-        # My Blog Post Title
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+	const post = await prisma.post.findUnique({
+		where: {
+			slug: params.slug,
+			published: true,
+		},
+	});
+	if (!post || !post.contentUrl) return {};
 
-        This is a paragraph.
+	const { title, imageUrl, description, readDuration, createdAt, updatedAt } = post;
+	return {
+		title,
+		description,
+		openGraph: {
+			title,
+			description,
+			url: `https://eliebaier.com/blog/${params.slug}`,
+			images: [
+				{
+					url: imageUrl,
+					width: 1200,
+					height: 630,
+				},
+			],
+		},
+		twitter: {
+			card: 'summary_large_image',
+			title,
+			description,
+			images: [imageUrl],
+		},
+		icons: {
+			icon: '/favicon.ico',
+			shortcut: '/favicon.ico',
+			apple: '/favicon.ico',
+		},
+		// metadataBase: new URL('https://eliebaier.com'),
+		alternates: {
+			canonical: `https://eliebaier.com/blog/${params.slug}`,
+		},
+	};
+}
 
-        Here's a list:
-        * Item 1
-        * Item 2
+export default async function BlogPage({ params }: { params: Promise<{ slug: string }> }) {
+	const { slug } = await params;
+	const post = await prisma.post.findUnique({
+		where: {
+			slug,
+			published: true,
+		},
+	});
+	if (!post || !post.contentUrl) return notFound();
 
-        \`\`\`javascript
-        console.log('Hello, world!');
-        \`\`\`
+	const { title, imageUrl, description, readDuration, createdAt, updatedAt } = post;
 
-        ![An image](https://apod.nasa.gov/apod/image/2505/NGC1360_Chander_4310.jpg)
-
-        This is a **bold** word and this is *italic*.
-    `;
+	const raw = await (await fetch(post.contentUrl, {})).text();
 
 	return (
-		<div>
-			<h1 className="text-3xl font-bold">Blog Post</h1>
-			<p className="mt-4">This is a blog post page.</p>
-			<p className="mt-4">You can add your blog content here.</p>
+		<div className="max-w-[69rem] w-full m-auto">
+			{imageUrl && (
+				<div className="w-full h-64 relative">
+					<Image src={imageUrl} fill alt={title} className="object-cover" priority />
+					<div className="absolute w-full h-full z-10 bg-gradient-to-b from-transparent to-background" />
+				</div>
+			)}
+			<div className="w-11/12 m-auto">
+				<h1 className="font-sans text-3xl md:text-5xl mt-4 font-bold">{title}</h1>
+				<p className="text-lg text-white/80">{description}</p>
 
-			<MDXRemote source={markdownContent} components={{ h1: Testing }} />
+				<div className="flex flex-row py-8 justify-between border-b-1 border-white/20">
+					<div className="flex gap-4 items-center">
+						<div className="rounded-full overflow-hidden">
+							<Image src={'/elie.jpeg'} width={48} height={48} alt="Elie Baier" />
+						</div>
+						<div className="flex flex-col">
+							<p className="font-sans text-xl font-bold ">Elie Baier</p>
+							<div className="flex gap-0">
+								<p className="text-base text-white/80 -mt-1">
+									{createdAt.getDate() +
+										' ' +
+										createdAt.toLocaleString('default', {
+											month: 'long',
+										}) +
+										' ' +
+										createdAt.getFullYear()}
+								</p>
+								{isAtLeastOneDayAfter(updatedAt, createdAt) && (
+									<div className="flex items-center -mt-1 gap-2 group">
+										<PencilRuler size={16} className="inline ml-2 opacity-60" />
+										{/* <div className="opacity-0 group-hover:opacity-100 transition-all duration-200 ease-in-out bg-black">
+                                            <p>
+                                                Last edited on the{" "}
+                                                {updatedAt.getDate() +
+                                                    " " +
+                                                    updatedAt.toLocaleString(
+                                                        "default",
+                                                        {
+                                                            month: "long",
+                                                        }
+                                                    ) +
+                                                    " " +
+                                                    updatedAt.getFullYear()}
+                                            </p>
+                                        </div> */}
+									</div>
+								)}
+							</div>
+						</div>
+					</div>
+					<div className="flex flex-col items-end justify-center gap-1">
+						{readDuration && (
+							<div className="flex gap-2 items-center opacity-80">
+								<Book size={18} />
+								<p className="text-sm text-white">{readDuration} min read</p>
+							</div>
+						)}
+
+						{readDuration && (
+							<div className="flex gap-2 items-center opacity-80">
+								<Heart size={18} />
+								<p className="text-sm text-white">{readDuration} likes</p>
+							</div>
+						)}
+					</div>
+				</div>
+
+				<div className="w-full flex flex-row relative gap-8">
+					<div className="pb-8 w-full md:w-9/12">
+						<MDXRemote
+							source={raw}
+							components={{
+								h1: H1,
+								h2: H2,
+								h3: H2,
+								h4: H2,
+								h5: H2,
+								h6: H2,
+								p: P,
+								img: IMG,
+							}}
+						/>
+					</div>
+					<div className="hidden md:flex w-3/12 sticky top-12 mt-12 h-fit border-1 rounded-2xl py-4 px-4 border-white/20 pr-8 flex-col gap-2">
+						{/* <p className="text-sm text-white">Introduction</p>
+                        <p className="text-sm text-white/40">
+                            Bought a MacBook with my own money
+                        </p> */}
+						<Sidebar />
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 }
 
-function Testing({ children }: { children: React.ReactNode }) {
+function H1({ children }: { children: ReactNode }) {
 	return (
-		<div className="bg-gray-200 p-4 rounded">
-			<p>This is a test component!</p>
-			<h1>{children}</h1>
-		</div>
+		<Link href={'#' + children?.toString().toLowerCase().toWellFormed().replaceAll(' ', '-').replaceAll("'", '')} className="w-full" id={children?.toString().toLowerCase().toWellFormed().replaceAll(' ', '-').replaceAll("'", '')}>
+			<h1 className="font-sans text-4xl mt-12 mb-4 group" sidebar-visible="true" sidebar-content={children}>
+				<span className="group-hover:underline">{children}</span>
+				<Pin className="inline ml-2 opacity-0 group-hover:opacity-20 rotate-z-12" size={24} color="white" />
+			</h1>
+		</Link>
+	);
+}
+
+function H2({ children }: { children: ReactNode }) {
+	return (
+		<h2 className="font-sans text-2xl mt-8" id="subtitle" sidebar-visible="true" sidebar-content={children}>
+			{children}
+		</h2>
+	);
+}
+
+function P({ children }: { children: ReactNode }) {
+	return <p className="text-base text-white/80 mb-6 mt-2">{children}</p>;
+}
+
+type IMGProps = React.ImgHTMLAttributes<HTMLImageElement>;
+function IMG({ src = '', alt = '', ...props }: IMGProps) {
+	return (
+		<span className="block w-full relative aspect-video rounded-2xl overflow-hidden">
+			<Image src={src.toString()} alt={alt} fill className="object-cover h-" />
+		</span>
 	);
 }
