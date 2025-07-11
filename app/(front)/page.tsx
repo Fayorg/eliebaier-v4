@@ -1,6 +1,6 @@
 import { BackgroundBlurredContainer } from '@/components/containers';
 import { Footer } from '@/components/sections/footer';
-import { GithubIcon, LinkedInIcon, XIcon } from '@/components/utils/icons';
+import { GithubIcon, LinkedInIcon } from '@/components/utils/icons';
 import ParticleBackground from '@/components/utils/particules-background';
 import { EliesSignature } from '@/components/utils/signature';
 import { DEPLOY, DEPLOY_GITHUB, ELIE_GITHUB, ELIE_LINKEDIN, ELIE_PROFILE_PIC, EPFL_LOGO, EPFL_PH_LINK, ERT_BLOG_POST, ERT_GITHUB, ERT_SPACE_RACE } from '@/config/links';
@@ -97,7 +97,7 @@ export default function Home() {
 									<div className="flex flex-col justify-between py-2 gap-4 lg:gap-0">
 										<div className="flex flex-col gap-2">
 											<h4 className="text-4xl font-sans">Avionics SpaceRace</h4>
-											<p className="text-lg text-white/80">I, with one of my teammate, build the avionics for a L1 class rocket. The avionics allowed us to have live telemetry on the ground as well as sending remote command to the vehicule during takeoff and descent. It also controlled the unreefing of our parachute.</p>
+											<p className="text-lg text-white/80">Together with a teammate, I developed the avionics system for an L1-class rocket enabling live telemetry transmission to the ground station and remote commands during flight. It also autonomously handled critical flight operations, including parachute unreefing.</p>
 										</div>
 										<div>
 											<div className="flex flex-row justify-between items-center">
@@ -130,7 +130,7 @@ export default function Home() {
 									<div className="flex flex-col justify-between py-2 gap-4 lg:gap-0">
 										<div className="flex flex-col gap-2">
 											<h4 className="text-4xl font-sans">Deploy</h4>
-											<p className="text-lg text-white/80">A Heroku/DigitalOcean alternative fully opensource with redundancy at heart and more</p>
+											<p className="text-lg text-white/80">A fully open-source alternative to Heroku and DigitalOcean, designed from the ground up with redundancy, scalability, and self-hosting in mind. Built to simplify deployment without compromising on control or reliability.</p>
 										</div>
 										<div>
 											<div className="flex flex-row justify-between items-center">
