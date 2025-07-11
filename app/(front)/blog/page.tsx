@@ -6,6 +6,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import AllPostsComponent from './all-posts';
 
+export const revalidate = 300;
+
 export default async function BlogPage() {
 	let featured;
 	let posts;
