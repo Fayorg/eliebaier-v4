@@ -1,7 +1,7 @@
 import { Book, Heart, PencilRuler } from 'lucide-react';
 import { MDXRemote } from 'next-mdx-remote-client/rsc';
 import Image from 'next/image';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { Sidebar } from './sidebar';
 import { isAtLeastOneDayAfter } from '@/lib/date';
 import { Metadata } from 'next';
@@ -53,7 +53,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function BlogPage({ params }: { params: Promise<{ slug: string }> }) {
 	const { slug } = await params;
 
-	const post = await getPostBySlug(slug, {});
+	let post;
+	try {
+		post = await getPostBySlug(slug, {});
+	} catch (err) {
+		// TODO: Log the error
+		console.error('Error fetching blog post:', err);
+		redirect('/blog');
+	}
 	if (!post || !post.contentUrl) return notFound();
 
 	const { title, imageUrl, description, readDuration, createdAt, updatedAt } = post;

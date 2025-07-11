@@ -1,14 +1,21 @@
 import { Post } from '@/app/generated/prisma';
 import { Footer } from '@/components/sections/footer';
 import { getAllPosts, getFeaturedPosts } from '@/sdk/blog/post';
-import { Bell, Book, Clock } from 'lucide-react';
+import { Bell, Book, Clock, MessageSquareWarning } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import AllPostsComponent from './all-posts';
 
 export default async function BlogPage() {
-	const featuredPosts = await getFeaturedPosts(3);
-	const posts = await getAllPosts({ allowUnpublished: false });
+	let featured;
+	let posts;
+	try {
+		featured = await getFeaturedPosts(3);
+		posts = await getAllPosts({ allowUnpublished: false });
+	} catch (err) {
+		// TODO: catch the error
+		console.error('Error fetching blog posts:', err);
+	}
 
 	return (
 		<>
@@ -31,18 +38,32 @@ export default async function BlogPage() {
 					</div>
 				</div>
 
-				<div className="mt-8">
-					<h2 className="text-3xl md:text-4xl font-sans">Featured posts</h2>
-					<div className="mt-4 flex flex-col gap-6">
-						{featuredPosts.map((post) => (
-							<BlogPostFeaturedCard key={post.id} title={post.title} description={post.description} imageUrl={post.imageUrl} createdAt={post.createdAt} readDuration={post.readDuration} slug={post.slug} />
-						))}
+				{!!featured && (
+					<div className="mt-8">
+						<h2 className="text-3xl md:text-4xl font-sans">Featured posts</h2>
+						<div className="mt-4 flex flex-col gap-6">
+							{featured.map((post) => (
+								<BlogPostFeaturedCard key={post.id} title={post.title} description={post.description} imageUrl={post.imageUrl} createdAt={post.createdAt} readDuration={post.readDuration} slug={post.slug} />
+							))}
+						</div>
 					</div>
-				</div>
+				)}
 
-				<div className="mt-8">
-					<AllPostsComponent posts={posts} />
-				</div>
+				{!!posts && (
+					<div className="mt-8">
+						<AllPostsComponent posts={posts} />
+					</div>
+				)}
+
+				{!posts && !featured && (
+					<div className="mt-8 flex w-full bg-amber-500/90 rounded-lg py-3 px-4 items-center">
+						<MessageSquareWarning className="mr-8 ml-4" size={40} />
+						<div className="">
+							<h2 className="text-3xl md:text-4xl font-sans">My blog is currently under maintenance</h2>
+							<p className="text-lg text-white/80">Please come check it out again later</p>
+						</div>
+					</div>
+				)}
 			</div>
 
 			<Footer />
