@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { GithubIcon, XIcon } from '../utils/icons';
-import { BLACKHOLE_VIDEO } from '@/config/links';
+import { GithubIcon, LinkedInIcon, XIcon } from '../utils/icons';
+import { BLACKHOLE_VIDEO, ELIE_GITHUB, ELIE_LINKEDIN } from '@/config/links';
 
 export function Footer({ includeSeparator = true }: { includeSeparator?: boolean }) {
 	return (
@@ -17,14 +17,19 @@ export function Footer({ includeSeparator = true }: { includeSeparator?: boolean
 							<h3 className="font-sans text-2xl font-bold">Elie Baier</h3>
 							<p className="text-sm text-white/80">To engineer is to bring clarity to chaos - where each line of code, every design, serves a meaningful and lasting purpose</p>
 							<div className="mt-8 flex flex-row gap-4">
-								<Link href={'#'}>
+								<Link href={ELIE_GITHUB}>
 									<div className="text-white/80 w-5 h-5 cursor-pointer hover:text-white/100 transition-all duration-200">
 										<GithubIcon />
 									</div>
 								</Link>
-								<Link href={'#'}>
+								{/* <Link href={'#'}>
 									<div className="text-white/80 w-5 h-5 cursor-pointer hover:text-white/100 transition-all duration-200">
 										<XIcon />
+									</div>
+								</Link> */}
+								<Link href={ELIE_LINKEDIN}>
+									<div className="text-white/80 w-5 h-5 cursor-pointer hover:text-white/100 transition-all duration-200">
+										<LinkedInIcon />
 									</div>
 								</Link>
 							</div>
@@ -47,7 +52,7 @@ export function Footer({ includeSeparator = true }: { includeSeparator?: boolean
 									<Link href={'/blog'} className="text-white/90 hover:text-white/100 transition-all duration-200">
 										<p className="text-sm">Blog</p>
 									</Link>
-									<Link href={'/blog'} className="text-white/90 hover:text-white/100 transition-all duration-200">
+									<Link href={'https://legacy.eliebaier.ch'} className="text-white/90 hover:text-white/100 transition-all duration-200">
 										<p className="text-sm">Legacy</p>
 									</Link>
 								</div>

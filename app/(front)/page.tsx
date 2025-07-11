@@ -1,9 +1,9 @@
 import { BackgroundBlurredContainer } from '@/components/containers';
 import { Footer } from '@/components/sections/footer';
-import { GithubIcon, XIcon } from '@/components/utils/icons';
+import { GithubIcon, LinkedInIcon, XIcon } from '@/components/utils/icons';
 import ParticleBackground from '@/components/utils/particules-background';
 import { EliesSignature } from '@/components/utils/signature';
-import { DEPLOY, DEPLOY_GITHUB, ELIE_GITHUB, ELIE_PROFILE_PIC, EPFL_LOGO, EPFL_PH_LINK, ERT_BLOG_POST, ERT_GITHUB, ERT_SPACE_RACE } from '@/config/links';
+import { DEPLOY, DEPLOY_GITHUB, ELIE_GITHUB, ELIE_LINKEDIN, ELIE_PROFILE_PIC, EPFL_LOGO, EPFL_PH_LINK, ERT_BLOG_POST, ERT_GITHUB, ERT_SPACE_RACE } from '@/config/links';
 import { ChevronRight, ChevronsLeftRightEllipsis, Rss } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -39,9 +39,14 @@ export default function Home() {
 											<GithubIcon />
 										</div>
 									</Link>
-									<Link href={'#'} target="_blank">
+									{/* <Link href={'#'} target="_blank">
 										<div className="text-white/80 w-5 h-5 cursor-pointer hover:text-white/100 transition-all duration-200">
 											<XIcon />
+										</div>
+									</Link> */}
+									<Link href={ELIE_LINKEDIN} target="_blank">
+										<div className="text-white/80 w-5 h-5 cursor-pointer hover:text-white/100 transition-all duration-200">
+											<LinkedInIcon />
 										</div>
 									</Link>
 								</div>
