@@ -131,7 +131,7 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
 								}}
 							/>
 						</div>
-						<div className="hidden md:flex w-3/12 sticky top-12 mt-12 h-fit border-1 rounded-2xl py-4 px-4 border-white/20 pr-8 flex-col gap-2">
+						<div className="hidden md:flex w-3/12 sticky top-24 mt-12 h-fit border-1 rounded-2xl py-4 px-4 border-white/20 pr-8 flex-col gap-2">
 							<Sidebar />
 						</div>
 					</div>

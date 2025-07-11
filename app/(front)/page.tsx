@@ -1,15 +1,16 @@
 import { BackgroundBlurredContainer } from '@/components/containers';
 import { Footer } from '@/components/sections/footer';
+import { GithubIcon, XIcon } from '@/components/utils/icons';
 import ParticleBackground from '@/components/utils/particules-background';
 import { EliesSignature } from '@/components/utils/signature';
+import { DEPLOY, DEPLOY_GITHUB, ELIE_GITHUB, ELIE_PROFILE_PIC, EPFL_LOGO, EPFL_PH_LINK, ERT_BLOG_POST, ERT_GITHUB, ERT_SPACE_RACE } from '@/config/links';
+import { ChevronRight, ChevronsLeftRightEllipsis, Rss } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Home() {
 	return (
 		<>
-			<header></header>
-
 			<main>
 				<div className="overflow-hidden">
 					<section>
@@ -21,32 +22,26 @@ export default function Home() {
 										<div className="flex flex-row items-center gap-2">
 											<div className="w-2 h-2 bg-primary rounded-full" />
 											<p className="text-sm sm:text-base text-white/80">Studying physics at </p>
-											<Link href={'https://www.epfl.ch/schools/sb/sph/en/'} target={'_blank'} className="border-b-1 pb-1 translate-y-0.5 border-white/80 cursor-alias">
-												<Image alt="EPFL Logo" width={42} height={12} src={'/epfl.png'} />
+											<Link href={EPFL_PH_LINK} target={'_blank'} className="border-b-1 pb-1 translate-y-0.5 border-white/80 cursor-alias">
+												<Image alt="EPFL Logo" width={42} height={12} src={EPFL_LOGO} />
 											</Link>
 										</div>
 									</BackgroundBlurredContainer>
 								</div>
 								<h1 className="text-7xl font-extrabold font-sans mt-10">I'm Elie</h1>
 								<p className="text-lg text-white/80 mt-4">I build distributed systems and developer tools, blending software with physics and rocketry to solve real-world problems with clarity and precision.</p>
-								<Link href={'#'} className="block border-1 border-white/15 hover:border-white/35 transition-all duration-200 px-4 py-3 w-fit mt-10 rounded-xl">
+								<Link href={'/me'} className="block border-1 border-white/15 hover:border-white/35 transition-all duration-200 px-4 py-3 w-fit mt-10 rounded-xl">
 									<p className="text-base text-white">More about me</p>
 								</Link>
 								<div className="mt-10 flex flex-row gap-4">
-									<Link href={'#'}>
+									<Link href={ELIE_GITHUB} target="_blank">
 										<div className="text-white/80 w-5 h-5 cursor-pointer hover:text-white/100 transition-all duration-200">
-											<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" strokeWidth={1}>
-												<title>GitHub</title>
-												<path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
-											</svg>
+											<GithubIcon />
 										</div>
 									</Link>
-									<Link href={'#'}>
+									<Link href={'#'} target="_blank">
 										<div className="text-white/80 w-5 h-5 cursor-pointer hover:text-white/100 transition-all duration-200">
-											<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" strokeWidth={1}>
-												<title>X</title>
-												<path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
-											</svg>
+											<XIcon />
 										</div>
 									</Link>
 								</div>
@@ -63,7 +58,7 @@ export default function Home() {
 								<div className="w-full md:w-2/5 flex justify-center items-center">
 									<div className="w-full flex p-6 border-1 max-w-[25rem] pb-32 border-white/20 scale-75 -rotate-z-[5deg] -translate-y-5 flex-col relative hover:scale-[80%] hover:border-white/80 transition-all duration-200 group">
 										<div className="relative w-full aspect-square">
-											<Image src={'/elie.jpeg'} alt={'Photo of me during snowboard trip'} fill />
+											<Image src={ELIE_PROFILE_PIC} alt={'Photo of me during snowboard trip'} fill />
 										</div>
 
 										<div className="absolute bottom-2 right-8 opacity-80 group-hover:opacity-100 transition-all duration-200">
@@ -85,15 +80,113 @@ export default function Home() {
 						</div>
 					</section>
 
-					<section className="bg-black relative">
-						<div className="bg-background w-full h-24 rounded-b-[13vw] absolute" />
+					<section className="mt-24" id="my-work">
+						<div className="max-w-[69rem] w-11/12 m-auto">
+							<h3 className="font-sans text-2xl uppercase flex items-center gap-2 font-bold">
+								<ChevronsLeftRightEllipsis size={28} strokeWidth={2.5} />
+								My work
+							</h3>
 
-						<div className="max-w-[69rem] w-11/12 m-auto pt-24 z-10">
-							<h2>Hello world</h2>
+							<div className="mt-8 flex flex-col gap-12">
+								<div className="flex justify-between lg:h-64 gap-2 lg:gap-12 flex-col-reverse lg:flex-row">
+									<div className="flex flex-col justify-between py-2 gap-4 lg:gap-0">
+										<div className="flex flex-col gap-2">
+											<h4 className="text-4xl font-sans">Avionics SpaceRace</h4>
+											<p className="text-lg text-white/80">I, with one of my teammate, build the avionics for a L1 class rocket. The avionics allowed us to have live telemetry on the ground as well as sending remote command to the vehicule during takeoff and descent. It also controlled the unreefing of our parachute.</p>
+										</div>
+										<div>
+											<div className="flex flex-row justify-between items-center">
+												<div className="flex">
+													<Link href={ERT_GITHUB} className="text-white/80 w-5 h-5 cursor-pointer hover:text-white/100 transition-all duration-200">
+														<GithubIcon />
+													</Link>
+												</div>
+												{/* <Link href={'/blog/space-race-5'}>
+													<p>Read my blog post</p>
+												</Link> */}
+												<Link href={ERT_BLOG_POST} className="block border-1 border-white/15 hover:border-white/35 transition-all duration-200 px-4 py-3 w-fit rounded-xl">
+													<p className="text-base text-white flex gap-1 items-center">
+														Read more <ChevronRight size={22} className="mt-[0.5px]" />
+													</p>
+												</Link>
+											</div>
+										</div>
+									</div>
+									<div className="w-full lg:min-w-[455px] lg:max-w-[455px] relative overflow-hidden lg:h-full rounded-lg aspect-video">
+										<Image src={ERT_SPACE_RACE} alt={'Avionics SR'} width={1100} height={300} className="" />
+									</div>
+								</div>
+
+								<div className="flex justify-between lg:h-64 gap-2 lg:gap-12 flex-col-reverse lg:flex-row">
+									<div className="w-full lg:max-w-[455px] lg:min-w-[455px] relative overflow-hidden lg:h-full rounded-lg aspect-video">
+										<Image src={DEPLOY} alt={'Deploy'} width={1100} height={300} className="" />
+									</div>
+
+									<div className="flex flex-col justify-between py-2 gap-4 lg:gap-0">
+										<div className="flex flex-col gap-2">
+											<h4 className="text-4xl font-sans">Deploy</h4>
+											<p className="text-lg text-white/80">A Heroku/DigitalOcean alternative fully opensource with redundancy at heart and more</p>
+										</div>
+										<div>
+											<div className="flex flex-row justify-between items-center">
+												<div className="flex">
+													<Link href={DEPLOY_GITHUB} className="text-white/80 w-5 h-5 cursor-pointer hover:text-white/100 transition-all duration-200">
+														<GithubIcon />
+													</Link>
+												</div>
+												{/* <Link href={'/blog/space-race-5'}>
+													<p>Read my blog post</p>
+												</Link> */}
+												{/* <Link href={'#'} className="block border-1 border-white/15 hover:border-white/35 transition-all duration-200 px-4 py-3 w-fit rounded-xl">
+													<p className="text-base text-white flex gap-1 items-center">
+														Read more <ChevronRight size={22} className="mt-[0.5px]" />
+													</p>
+												</Link> */}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</section>
 
-					<Footer includeSeparator={false} />
+					<section className="mt-24">
+						<div className="max-w-[69rem] w-11/12 m-auto">
+							<h3 className="font-sans text-2xl uppercase flex items-center gap-2 font-bold">
+								<Rss size={24} strokeWidth={2.5} />
+								Recent posts
+							</h3>
+
+							<div className="mt-8 flex flex-col gap-12">
+								<div className="flex justify-between lg:h-64 gap-2 lg:gap-12 flex-col-reverse lg:flex-row">
+									<div className="flex flex-col justify-between py-2 gap-4 lg:gap-0">
+										<div className="flex flex-col gap-2">
+											<h4 className="text-4xl font-sans">Avionics SpaceRace</h4>
+											<p className="text-lg text-white/80">I, with one of my teammate, build the avionics for a L1 class rocket. The avionics allowed us to have live telemetry on the ground as well as sending remote command to the vehicule during takeoff and descent. It also controlled the unreefing of our parachute.</p>
+										</div>
+										<div>
+											<div className="flex flex-row justify-between items-center">
+												<div className="flex"></div>
+												{/* <Link href={'/blog/space-race-5'}>
+													<p>Read my blog post</p>
+												</Link> */}
+												<Link href={'#'} className="block border-1 border-white/15 hover:border-white/35 transition-all duration-200 px-4 py-3 w-fit rounded-xl">
+													<p className="text-base text-white flex gap-1 items-center">
+														Read more <ChevronRight size={22} className="mt-[0.5px]" />
+													</p>
+												</Link>
+											</div>
+										</div>
+									</div>
+									<div className="w-full lg:min-w-[455px] lg:max-w-[455px] relative overflow-hidden lg:h-full rounded-lg aspect-video">
+										<Image src={'/avionics.jpeg'} alt={'Avionics SR'} width={1100} height={300} className="" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<Footer includeSeparator={true} />
 				</div>
 			</main>
 			<ParticleBackground />

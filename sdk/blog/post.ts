@@ -24,3 +24,15 @@ export async function getFeaturedPosts(limit?: number): Promise<Post[]> {
         take: limit ?? 3,
     })
 }
+
+export async function getAllPosts({ allowUnpublished = false }: GetPostBySlugOptions, limit?: number): Promise<Post[]> {
+    return prisma.post.findMany({
+        where: {
+            ...(allowUnpublished ? {} : { published: true }),
+        },
+        orderBy: {
+            createdAt: 'desc',
+        },
+        take: limit ?? 3,
+    })
+}

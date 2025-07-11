@@ -1,16 +1,18 @@
 import { Post } from '@/app/generated/prisma';
 import { Footer } from '@/components/sections/footer';
-import { getFeaturedPosts } from '@/sdk/blog/post';
+import { getAllPosts, getFeaturedPosts } from '@/sdk/blog/post';
 import { Bell, Book, Clock } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import AllPostsComponent from './all-posts';
 
 export default async function BlogPage() {
 	const featuredPosts = await getFeaturedPosts(3);
+	const posts = await getAllPosts({ allowUnpublished: false });
 
 	return (
 		<>
-			<div className="max-w-[69rem] w-11/12 m-auto pb-4 md:pb-0">
+			<div className="max-w-[69rem] w-11/12 m-auto pb-4 md:pb-0 pt-20">
 				<div className="border-b-1 border-white/20 pb-8 flex flex-col md:flex-row justify-between mt-8">
 					<div className="w-full md:w-7/12">
 						<div className="flex flex-row justify-between items-center">
@@ -31,7 +33,7 @@ export default async function BlogPage() {
 
 				<div className="mt-8">
 					<h2 className="text-3xl md:text-4xl font-sans">Featured posts</h2>
-					<div className="mt-4 flex flex-col">
+					<div className="mt-4 flex flex-col gap-6">
 						{featuredPosts.map((post) => (
 							<BlogPostFeaturedCard key={post.id} title={post.title} description={post.description} imageUrl={post.imageUrl} createdAt={post.createdAt} readDuration={post.readDuration} slug={post.slug} />
 						))}
@@ -39,8 +41,7 @@ export default async function BlogPage() {
 				</div>
 
 				<div className="mt-8">
-					<h2 className="text-3xl md:text-4xl font-sans">All posts</h2>
-					<div className="mt-4 flex flex-col"></div>
+					<AllPostsComponent posts={posts} />
 				</div>
 			</div>
 
