@@ -17,7 +17,7 @@ export function Sidebar() {
 	const observer = useRef<IntersectionObserver | null>(null);
 
 	useEffect(() => {
-		document.querySelectorAll("h1[sidebar-visible='true'], h2[sidebar-visible='true']").forEach((el, i) => {
+		document.querySelectorAll("h1[sidebar-visible='true'], h2[sidebar-visible='true']").forEach((el) => {
 			setSidebarContent((prev) => [
 				...prev,
 				{

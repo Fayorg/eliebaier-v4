@@ -19,29 +19,6 @@ const Navigation = () => {
 
 	const { push } = useRouter();
 
-	const scrollToSection = (sectionId: string) => {
-		if (sectionId === 'testimonials') {
-			const testimonialSection = document.querySelector('.animate-marquee');
-			if (testimonialSection) {
-				const yOffset = -100; // Offset to account for the fixed header
-				const y = testimonialSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
-				window.scrollTo({ top: y, behavior: 'smooth' });
-			}
-		} else if (sectionId === 'cta') {
-			const ctaSection = document.querySelector('.button-gradient');
-			if (ctaSection) {
-				const yOffset = -100;
-				const y = ctaSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
-				window.scrollTo({ top: y, behavior: 'smooth' });
-			}
-		} else {
-			const element = document.getElementById(sectionId);
-			if (element) {
-				element.scrollIntoView({ behavior: 'smooth' });
-			}
-		}
-	};
-
 	const navItems = [
 		{ name: 'My Work', href: '#my-work', onClick: () => push('/#my-work') },
 		{ name: 'About me', href: '#features', onClick: () => push('/me') },

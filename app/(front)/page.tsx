@@ -28,7 +28,7 @@ export default function Home() {
 										</div>
 									</BackgroundBlurredContainer>
 								</div>
-								<h1 className="text-7xl font-extrabold font-sans mt-10">I'm Elie</h1>
+								<h1 className="text-7xl font-extrabold font-sans mt-10">I&apos;m Elie</h1>
 								<p className="text-lg text-white/80 mt-4">I build distributed systems and developer tools, blending software with physics and rocketry to solve real-world problems with clarity and precision.</p>
 								<Link href={'/me'} className="block border-1 border-white/15 hover:border-white/35 transition-all duration-200 px-4 py-3 w-fit mt-10 rounded-xl">
 									<p className="text-base text-white">More about me</p>
@@ -68,7 +68,7 @@ export default function Home() {
 									</div>
 								</div>
 								<div className="w-full md:w-3/5 flex flex-col gap-4">
-									<p className="text-lg text-white/80">Hi, I'm Elie — a physics student based in Switzerland with a deep passion for systems, computing, and how things work at every level. </p>
+									<p className="text-lg text-white/80">Hi, I&apos;m Elie — a physics student based in Switzerland with a deep passion for systems, computing, and how things work at every level. </p>
 									<p className="text-lg text-white/80">I began programming at age 10 and never stopped exploring. Over the years, I’ve gone from building basic websites to running a full homelab, designing distributed systems, and contributing to student rocketry as part of my university’s team. Whether I’m working on backend infrastructure, embedded avionics, or real-time telemetry, I love building tools that are reliable, scalable, and grounded in real-world engineering.</p>
 
 									<q className="text-2xl text-white/80 mt-4">

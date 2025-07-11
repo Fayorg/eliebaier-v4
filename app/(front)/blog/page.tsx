@@ -16,7 +16,7 @@ export default async function BlogPage() {
 				<div className="border-b-1 border-white/20 pb-8 flex flex-col md:flex-row justify-between mt-8">
 					<div className="w-full md:w-7/12">
 						<div className="flex flex-row justify-between items-center">
-							<h1 className="font-sans text-4xl md:text-5xl">Elie's Blog</h1>
+							<h1 className="font-sans text-4xl md:text-5xl">Elie&apos;s Blog</h1>
 							<Link href={'#'} className="block md:hidden text-white/80 hover:text-white/100 transition-all duration-200 border-1 border-white/15 hover:border-white/35 px-2 py-2 rounded-full">
 								<Bell size={20} strokeWidth={1.5} />
 							</Link>
