@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { GithubIcon, LinkedInIcon, XIcon } from '../utils/icons';
+import { GithubIcon, LinkedInIcon } from '../utils/icons';
 import { BLACKHOLE_VIDEO, ELIE_GITHUB, ELIE_LINKEDIN } from '@/config/links';
 
 export function Footer({ includeSeparator = true }: { includeSeparator?: boolean }) {
