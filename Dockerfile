@@ -6,6 +6,7 @@ COPY package.json yarn.lock* package-lock.json* ./
 RUN npm install --frozen-lockfile || yarn install --frozen-lockfile
 
 COPY prisma ./prisma/
+ENV PRISMA_CLI_BINARY_TARGETS="linux-musl"
 RUN npx prisma generate
 
 COPY . .
