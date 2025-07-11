@@ -1,2 +1,2 @@
-node_modules/
-app/generated/prisma/
+node_modules
+app/generated/prisma

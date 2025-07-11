@@ -168,11 +168,12 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://eliebaier-db-user:super-strong-password@localhost:5432/eliebaier?schema=public"
+        "value": null
       }
     }
   },
