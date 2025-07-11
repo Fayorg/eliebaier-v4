@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { GithubIcon, XIcon } from '../utils/icons';
+import { BLACKHOLE_VIDEO } from '@/config/links';
 
 export function Footer({ includeSeparator = true }: { includeSeparator?: boolean }) {
 	return (
@@ -7,7 +8,7 @@ export function Footer({ includeSeparator = true }: { includeSeparator?: boolean
 			{includeSeparator && <div className="w-full h-4 md:h-14 bg-[linear-gradient(to_bottom,_theme('colors.background')_0%,_theme('colors.background')_50%,_theme('colors.black')_80%)]"></div>}
 			<section className="bg-gradient-to-b from-black to-slate-950 relative sm:h-[38rem] z-10 h-[48rem]">
 				<div className="h-[38rem] w-full">
-					<video playsInline autoPlay loop muted className="[filter:sepia(1)_saturate(6)_hue-rotate(195deg)_brightness(1.1)] m-auto w-full h-full object-cover md:max-w-[1440px] sm:max-h-[40rem] md:max-h-[40.7rem] lg:max-h-[40.3rem]" src={'/blackhole.webm'} />
+					<video playsInline autoPlay loop muted className="[filter:sepia(1)_saturate(6)_hue-rotate(195deg)_brightness(1.1)] m-auto w-full h-full object-cover md:max-w-[1440px] sm:max-h-[40rem] md:max-h-[40.7rem] lg:max-h-[40.3rem]" src={BLACKHOLE_VIDEO} />
 				</div>
 				<div className="-translate-y-[19rem] backdrop-blur-3xl h-[19rem] absolute w-full" />
 				<footer className="-translate-y-[19rem] max-w-[69rem] w-11/12 m-auto pt-8 relative">

@@ -8,9 +8,9 @@ export const ELIE_GITHUB = "";
 export const EPFL_PH_LINK = 'https://www.epfl.ch/schools/sb/sph/en/';
 
 // Images
-export const ELIE_PROFILE_PIC = "/elie.jpeg";
-export const ELIE_SIGNATURE = "/signature.svg";
-export const EPFL_LOGO = "/epfl.png"
+export const ELIE_PROFILE_PIC = "https://eliebaier.fra1.cdn.digitaloceanspaces.com/ELIE.jpeg";
+export const EPFL_LOGO = "https://eliebaier.fra1.cdn.digitaloceanspaces.com/EPFL.png"
+export const BLACKHOLE_VIDEO = 'https://eliebaier.fra1.cdn.digitaloceanspaces.com/BLACKHOLE.webm';
 
 // Projects
 export const ERT_SPACE_RACE = "/avionics.jpeg";
@@ -20,8 +20,8 @@ export const DEPLOY = "/";
 export const DEPLOY_GITHUB = 'https://git.aketechnology.me/deploy/frontend';
 
 // Education
-export const GYMNASE_NYON_LOGO = "/gymnase.png";
+export const GYMNASE_NYON_LOGO = "https://eliebaier.fra1.cdn.digitaloceanspaces.com/GYMNASE.png";
 export const GYMNASE_NYON_LINK = 'https://moodle.gymnyon.vd.ch/';
-export const DIGITAL_CANION_LOGO = "/digitalcanion.png";
+export const DIGITAL_CANION_LOGO = "https://eliebaier.fra1.cdn.digitaloceanspaces.com/DIGITALCANION.png";
 export const DIGITAL_CANION_LINK = 'https://www.digitalcanion.ch/';
 export const EPFL_LINK = 'https://www.epfl.ch/en';

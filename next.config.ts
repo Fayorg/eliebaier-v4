@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
         {
             protocol: "https",
-            hostname: "images.theodorusclarence.com",
+            hostname: "eliebaier.fra1.cdn.digitaloceanspaces.com",
             port: "",
             pathname: "/**",
         },
