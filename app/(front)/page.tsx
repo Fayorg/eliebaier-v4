@@ -122,7 +122,7 @@ export default function Home() {
 									</div>
 								</div>
 
-								<div className="flex justify-between lg:h-64 gap-2 lg:gap-12 flex-col-reverse lg:flex-row">
+								<div className="flex justify-between lg:h-64 gap-2 lg:gap-12 flex-col lg:flex-row">
 									<div className="w-full lg:max-w-[455px] lg:min-w-[455px] relative overflow-hidden lg:h-full rounded-lg aspect-video">
 										<Image src={DEPLOY} alt={'Deploy'} width={1100} height={300} className="" />
 									</div>
