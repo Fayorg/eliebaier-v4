@@ -111,7 +111,7 @@ export default function Home() {
 												</Link> */}
 												<Link href={ERT_BLOG_POST} className="block border-1 border-white/15 hover:border-white/35 transition-all duration-200 px-4 py-3 w-fit rounded-xl">
 													<p className="text-base text-white flex gap-1 items-center">
-														Read more <ChevronRight size={22} className="mt-[0.5px]" />
+														Continue Reading <ChevronRight size={22} className="mt-[0.5px]" />
 													</p>
 												</Link>
 											</div>
@@ -177,7 +177,7 @@ export default function Home() {
 												</Link> */}
 												<Link href={'#'} className="block border-1 border-white/15 hover:border-white/35 transition-all duration-200 px-4 py-3 w-fit rounded-xl">
 													<p className="text-base text-white flex gap-1 items-center">
-														Read more <ChevronRight size={22} className="mt-[0.5px]" />
+														Continue Reading <ChevronRight size={22} className="mt-[0.5px]" />
 													</p>
 												</Link>
 											</div>
