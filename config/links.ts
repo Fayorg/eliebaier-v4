@@ -1,8 +1,8 @@
 // Social
 export const ELIE_X = "";
 export const ELIE_INSTAGRAM = "";
-export const ELIE_LINKEDIN = "";
-export const ELIE_GITHUB = "";
+export const ELIE_LINKEDIN = "https://ch.linkedin.com/in/elie-baier-a59269252";
+export const ELIE_GITHUB = "https://github.com/Fayorg";
 
 // Links
 export const EPFL_PH_LINK = 'https://www.epfl.ch/schools/sb/sph/en/';
@@ -13,10 +13,10 @@ export const EPFL_LOGO = "https://eliebaier.fra1.cdn.digitaloceanspaces.com/EPFL
 export const BLACKHOLE_VIDEO = 'https://eliebaier.fra1.cdn.digitaloceanspaces.com/BLACKHOLE.webm';
 
 // Projects
-export const ERT_SPACE_RACE = "/avionics.jpeg";
+export const ERT_SPACE_RACE = "https://eliebaier.fra1.cdn.digitaloceanspaces.com/SPACERACE5.jpg";
 export const ERT_GITHUB = 'https://github.com/Fayorg/ert-avionics';
 export const ERT_BLOG_POST = "/blog/space-race-v"
-export const DEPLOY = "/";
+export const DEPLOY = "https://eliebaier.fra1.cdn.digitaloceanspaces.com/DEPLOY2.png";
 export const DEPLOY_GITHUB = 'https://git.aketechnology.me/deploy/frontend';
 
 // Education
