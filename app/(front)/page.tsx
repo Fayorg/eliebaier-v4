@@ -36,6 +36,7 @@ export default function Home() {
 								<div className="mt-10 flex flex-row gap-4">
 									<Link href={ELIE_GITHUB} target="_blank">
 										<div className="text-white/80 w-5 h-5 cursor-pointer hover:text-white/100 transition-all duration-200">
+											<p className="sr-only">Github link</p>
 											<GithubIcon />
 										</div>
 									</Link>
@@ -46,6 +47,7 @@ export default function Home() {
 									</Link> */}
 									<Link href={ELIE_LINKEDIN} target="_blank">
 										<div className="text-white/80 w-5 h-5 cursor-pointer hover:text-white/100 transition-all duration-200">
+											<p className="sr-only">Linkedin link</p>
 											<LinkedInIcon />
 										</div>
 									</Link>
