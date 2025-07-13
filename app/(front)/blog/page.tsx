@@ -5,6 +5,7 @@ import { Bell, Book, Clock, MessageSquareWarning } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import AllPostsComponent from './all-posts';
+import { ELIE_PROFILE_PIC } from '@/config/links';
 
 export const revalidate = 300;
 
@@ -109,3 +110,34 @@ function BlogPostFeaturedCard({ title, description, imageUrl, createdAt, readDur
 		</Link>
 	);
 }
+
+export const metadata = {
+	title: 'Blog — Elie Baier',
+	description: 'A place for thoughts too big to keep in my head — about how things scale, fly, and sometimes fail. Shared in the spirit of learning out loud.',
+	keywords: ['Elie Baier blog', 'Engineering blog', 'Physics blog', 'Systems design', 'Avionics', 'IoT projects', 'Embedded systems', 'Startup notes', 'Telemetry', 'Homelab', 'Tech writing', 'Learning in public'],
+	authors: [{ name: 'Elie Baier', url: 'https://eliebaier.ch' }],
+	creator: 'Elie Baier',
+	metadataBase: new URL('https://eliebaier.ch'),
+	openGraph: {
+		title: 'Blog — Elie Baier',
+		description: 'From rockets to real-time systems, I write about the things I build and the lessons I learn. Expect hardware, software, scale, and the occasional failure.',
+		url: 'https://eliebaier.ch/blog',
+		siteName: 'Elie Baier',
+		images: [
+			{
+				url: ELIE_PROFILE_PIC,
+				width: 1200,
+				height: 1200,
+				alt: 'Elie Baier Blog',
+			},
+		],
+		locale: 'en_US',
+		type: 'website',
+	},
+	twitter: {
+		card: 'summary_large_image',
+		title: 'Blog — Elie Baier',
+		description: 'A space for engineering notes, project breakdowns, and thoughts on systems, physics, and startups.',
+		images: [ELIE_PROFILE_PIC],
+	},
+};

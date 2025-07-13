@@ -148,3 +148,34 @@ export default function MePage() {
 		</>
 	);
 }
+
+export const metadata = {
+	title: 'About — Elie Baier',
+	description: 'Learn more about Elie Baier — a physics student at EPFL with a passion for systems engineering, avionics, IoT, and building things that last.',
+	keywords: ['Elie Baier', 'About Elie', 'EPFL student', 'Physics student', 'Systems engineering', 'Avionics', 'IoT', 'Homelab', 'PCBs', 'Cybersecurity', 'Embedded systems', 'Full-stack developer', 'Self-hosting', 'Startup journey'],
+	authors: [{ name: 'Elie Baier', url: 'https://eliebaier.ch' }],
+	creator: 'Elie Baier',
+	metadataBase: new URL('https://eliebaier.ch'),
+	openGraph: {
+		title: 'About — Elie Baier',
+		description: "Hi, I'm Elie — a student, builder, and engineer. From coding at 10 to developing real-time avionics and dreaming of my own startup, this is my journey.",
+		url: 'https://eliebaier.ch/about',
+		siteName: 'Elie Baier',
+		images: [
+			{
+				url: ELIE_PROFILE_PIC,
+				width: 1200,
+				height: 1200,
+				alt: 'Elie Baier — About Me',
+			},
+		],
+		locale: 'en_US',
+		type: 'profile',
+	},
+	twitter: {
+		card: 'summary_large_image',
+		title: 'About — Elie Baier',
+		description: 'Physics student at EPFL building systems that scale. Learn more about my work, projects, and what drives me.',
+		images: [ELIE_PROFILE_PIC],
+	},
+};
