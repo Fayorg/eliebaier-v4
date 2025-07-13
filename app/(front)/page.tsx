@@ -34,7 +34,7 @@ export default function Home() {
 									<p className="text-base text-white">More about me</p>
 								</Link>
 								<div className="mt-10 flex flex-row gap-4">
-									<Link href={ELIE_GITHUB} target="_blank">
+									<Link href={ELIE_GITHUB} target="_blank" aria-label="Github link">
 										<div className="text-white/80 w-5 h-5 cursor-pointer hover:text-white/100 transition-all duration-200">
 											<p className="sr-only">Github link</p>
 											<GithubIcon />
@@ -45,7 +45,7 @@ export default function Home() {
 											<XIcon />
 										</div>
 									</Link> */}
-									<Link href={ELIE_LINKEDIN} target="_blank">
+									<Link href={ELIE_LINKEDIN} target="_blank" aria-label="Linkedin link">
 										<div className="text-white/80 w-5 h-5 cursor-pointer hover:text-white/100 transition-all duration-200">
 											<p className="sr-only">Linkedin link</p>
 											<LinkedInIcon />

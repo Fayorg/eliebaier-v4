@@ -17,7 +17,7 @@ export function Footer({ includeSeparator = true }: { includeSeparator?: boolean
 							<h3 className="font-sans text-2xl font-bold">Elie Baier</h3>
 							<p className="text-sm text-white/80">To engineer is to bring clarity to chaos - where each line of code, every design, serves a meaningful and lasting purpose</p>
 							<div className="mt-8 flex flex-row gap-4">
-								<Link href={ELIE_GITHUB}>
+								<Link href={ELIE_GITHUB} aria-label="Elie Baier GitHub">
 									<div className="text-white/80 w-5 h-5 cursor-pointer hover:text-white/100 transition-all duration-200">
 										<GithubIcon />
 									</div>
@@ -27,7 +27,7 @@ export function Footer({ includeSeparator = true }: { includeSeparator?: boolean
 										<XIcon />
 									</div>
 								</Link> */}
-								<Link href={ELIE_LINKEDIN}>
+								<Link href={ELIE_LINKEDIN} aria-label="Elie Baier LinkedIn">
 									<div className="text-white/80 w-5 h-5 cursor-pointer hover:text-white/100 transition-all duration-200">
 										<LinkedInIcon />
 									</div>
@@ -37,7 +37,7 @@ export function Footer({ includeSeparator = true }: { includeSeparator?: boolean
 						<div className="w-full sm:w-3/5 flex flex-row">
 							<div className="w-1/2 flex flex-col gap-2">
 								<h4 className="text-sm text-white/80">General</h4>
-								<div>
+								<div className="flex flex-col gap-1">
 									<Link href={'/'} className="text-white/90 hover:text-white/100 transition-all duration-200">
 										<p className="text-sm">Elie Baier</p>
 									</Link>
@@ -46,9 +46,9 @@ export function Footer({ includeSeparator = true }: { includeSeparator?: boolean
 									</Link>
 								</div>
 							</div>
-							<div className="w-1/2">
+							<div className="w-1/2 flex flex-col gap-2">
 								<h4 className="text-sm text-white/80">Resources</h4>
-								<div>
+								<div className="flex flex-col gap-1">
 									<Link href={'/blog'} className="text-white/90 hover:text-white/100 transition-all duration-200">
 										<p className="text-sm">Blog</p>
 									</Link>
