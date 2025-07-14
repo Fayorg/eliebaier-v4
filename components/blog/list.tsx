@@ -1,7 +1,7 @@
 import React from 'react';
 
 export function DottedList({ children }: { children: React.ReactNode }) {
-	let items: React.ReactNode[] = [];
+	const items: React.ReactNode[] = [];
 
 	React.Children.map(children, (child) => {
 		if (!React.isValidElement(child)) return;
