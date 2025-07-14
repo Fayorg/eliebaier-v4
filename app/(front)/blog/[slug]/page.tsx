@@ -9,6 +9,8 @@ import { getPostBySlug } from '@/sdk/blog';
 import { H1, H2, P } from '@/components/blog/text';
 import { IMG } from '@/components/blog/image';
 import { Footer } from '@/components/sections/footer';
+import { ELIE_PROFILE_PIC } from '@/config/links';
+import { DottedList } from '@/components/blog/list';
 
 export const revalidate = 300;
 
@@ -85,7 +87,7 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
 					<div className="flex flex-row py-8 justify-between border-b-1 border-white/20">
 						<div className="flex gap-4 items-center">
 							<div className="rounded-full overflow-hidden">
-								<Image src={'/elie.jpeg'} width={48} height={48} alt="Elie Baier" />
+								<Image src={ELIE_PROFILE_PIC} width={48} height={48} alt="Elie Baier" />
 							</div>
 							<div className="flex flex-col">
 								<p className="font-sans text-xl font-bold ">Elie Baier</p>
@@ -137,6 +139,7 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
 									h6: H2,
 									p: P,
 									img: IMG,
+									ul: DottedList,
 								}}
 							/>
 						</div>

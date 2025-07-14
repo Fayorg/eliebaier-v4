@@ -185,8 +185,8 @@ export default async function Home() {
 									<div className="flex justify-between lg:h-64 gap-2 lg:gap-12 flex-col-reverse lg:flex-row">
 										<div className="flex flex-col justify-between py-2 gap-4 lg:gap-0">
 											<div className="flex flex-col gap-2">
-												<h4 className="text-4xl font-sans">Avionics SpaceRace</h4>
-												<p className="text-lg text-white/80">I, with one of my teammate, build the avionics for a L1 class rocket. The avionics allowed us to have live telemetry on the ground as well as sending remote command to the vehicule during takeoff and descent. It also controlled the unreefing of our parachute.</p>
+												<h4 className="text-4xl font-sans">{post.title}</h4>
+												<p className="text-lg text-white/80">{post.description}</p>
 											</div>
 											<div>
 												<div className="flex flex-row justify-between items-center">
@@ -194,7 +194,7 @@ export default async function Home() {
 													{/* <Link href={'/blog/space-race-5'}>
 													<p>Read my blog post</p>
 												</Link> */}
-													<Link href={'#'} className="block border-1 border-white/15 hover:border-white/35 transition-all duration-200 px-4 py-3 w-fit rounded-xl">
+													<Link href={'/blog/' + post.slug} className="block border-1 border-white/15 hover:border-white/35 transition-all duration-200 px-4 py-3 w-fit rounded-xl">
 														<p className="text-base text-white flex gap-1 items-center">
 															Continue Reading <ChevronRight size={22} className="mt-[0.5px]" />
 														</p>
@@ -203,7 +203,7 @@ export default async function Home() {
 											</div>
 										</div>
 										<div className="w-full lg:min-w-[455px] lg:max-w-[455px] relative overflow-hidden lg:h-full rounded-lg aspect-video">
-											<Image src={'/avionics.jpeg'} alt={'Avionics SR'} width={1100} height={300} className="" />
+											<Image src={post.imageUrl} alt={post.title} width={1100} height={300} className="" />
 										</div>
 									</div>
 								</div>
