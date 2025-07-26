@@ -33,40 +33,50 @@ export function getAllPosts(): Post[] {
                 description: frontmatter.description || '',
                 image: frontmatter.image || '',
                 date: new Date(frontmatter.date) || new Date(),
-                readDuration: frontmatter.readDuration || '0 min',
+                readDuration: frontmatter.read || '0 min',
+                visible: frontmatter.visible !== undefined ? frontmatter.visible : false,
             },
         };
     });
 
-    return allPostsData;
+    return allPostsData.filter((post) => {
+        if(post.visible == false && !(process.env.NODE_ENV === 'development')) {
+            return false;
+        }
+        return true;
+    });
 }
 
 export function getPostBySlug(slug: string): Post | null {
-  const fullPathMD = path.join(postsDirectory, `${slug}.md`);
-  const fullPathMDX = path.join(postsDirectory, `${slug}.mdx`);
+    const fullPathMD = path.join(postsDirectory, `${slug}.md`);
+    const fullPathMDX = path.join(postsDirectory, `${slug}.mdx`);
 
-  let fullPath;
-  if (fs.existsSync(fullPathMD)) {
-    fullPath = fullPathMD;
-  } else if (fs.existsSync(fullPathMDX)) {
-    fullPath = fullPathMDX;
-  } else {
-    return null;
-  }
+    let fullPath;
+    if (fs.existsSync(fullPathMD)) {
+        fullPath = fullPathMD;
+    } else if (fs.existsSync(fullPathMDX)) {
+        fullPath = fullPathMDX;
+    } else {
+        return null;
+    }
 
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
 
-  const { data: frontmatter, content } = matter(fileContents);
+    const { data: frontmatter, content } = matter(fileContents);
 
-  return {
-    slug,
-    ...{
-        title: frontmatter.title || '',
-        description: frontmatter.description || '',
-        image: frontmatter.image || '',
-        date: new Date(frontmatter.date) || new Date(),
-        readDuration: frontmatter.readDuration || '0 min',
-    },
-    content,
-  };
+    if((!frontmatter.visible && process.env.NODE_ENV !== 'development') || frontmatter.visible === false && !(process.env.NODE_ENV === 'development')) {
+        return null;
+    }
+
+    return {
+        slug,
+        ...{
+            title: frontmatter.title || '',
+            description: frontmatter.description || '',
+            image: frontmatter.image || '',
+            date: new Date(frontmatter.date) || new Date(),
+            readDuration: frontmatter.read || '0 min',
+        },
+        content,
+    };
 }

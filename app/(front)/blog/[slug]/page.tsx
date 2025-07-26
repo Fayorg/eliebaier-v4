@@ -98,7 +98,7 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
 								</div>
 							</div>
 						</div>
-						<div className="flex flex-col items-end justify-center gap-1">
+						<div className="flex flex-col items-end justify-end gap-1">
 							{readDuration && (
 								<div className="flex gap-2 items-center opacity-80">
 									<Book size={18} />
@@ -106,7 +106,7 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
 								</div>
 							)}
 
-							{readDuration && (
+							{false && (
 								<div className="flex gap-2 items-center opacity-80">
 									<Heart size={18} />
 									<p className="text-sm text-white">{readDuration} likes</p>
