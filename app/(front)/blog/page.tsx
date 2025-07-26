@@ -1,24 +1,14 @@
-import { Post } from '@/app/generated/prisma';
 import { Footer } from '@/components/sections/footer';
-import { getAllPosts, getFeaturedPosts } from '@/sdk/blog/post';
 import { Bell, Book, Clock, MessageSquareWarning } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import AllPostsComponent from './all-posts';
 import { ELIE_PROFILE_PIC } from '@/config/links';
-
-export const revalidate = 300;
+import { getAllPosts } from '@/lib/blog/posts';
 
 export default async function BlogPage() {
-	let featured;
-	let posts;
-	try {
-		featured = await getFeaturedPosts(3);
-		posts = await getAllPosts({ allowUnpublished: false });
-	} catch (err) {
-		// TODO: catch the error
-		console.error('Error fetching blog posts:', err);
-	}
+	const featured = getAllPosts();
+	const posts = getAllPosts();
 
 	return (
 		<>
@@ -46,7 +36,7 @@ export default async function BlogPage() {
 						<h2 className="text-3xl md:text-4xl font-sans">Featured posts</h2>
 						<div className="mt-4 flex flex-col gap-6">
 							{featured.map((post) => (
-								<BlogPostFeaturedCard key={post.id} title={post.title} description={post.description} imageUrl={post.imageUrl} createdAt={post.createdAt} readDuration={post.readDuration} slug={post.slug} />
+								<BlogPostFeaturedCard key={post.slug} title={post.title} description={post.description} imageUrl={post.image} createdAt={post.date} readDuration={post.readDuration} slug={post.slug} />
 							))}
 						</div>
 					</div>
@@ -74,7 +64,7 @@ export default async function BlogPage() {
 	);
 }
 
-function BlogPostFeaturedCard({ title, description, imageUrl, createdAt, readDuration, slug }: Pick<Post, 'title' | 'description' | 'createdAt' | 'slug' | 'readDuration' | 'imageUrl'>) {
+function BlogPostFeaturedCard({ title, description, imageUrl, createdAt, readDuration, slug }: { title: string; description: string; imageUrl: string; createdAt: Date; readDuration: string; slug: string }) {
 	return (
 		<Link className="w-full flex flex-col md:flex-row gap-2 md:gap-8 justify-start" href={`/blog/${slug}`}>
 			<div className="relative aspect-video w-full md:h-42 rounded-2xl overflow-hidden md:w-[298px]">

@@ -4,26 +4,13 @@ import { GithubIcon, LinkedInIcon } from '@/components/utils/icons';
 import ParticleBackground from '@/components/utils/particules-background';
 import { EliesSignature } from '@/components/utils/signature';
 import { DEPLOY, DEPLOY_GITHUB, ELIE_GITHUB, ELIE_LINKEDIN, ELIE_PROFILE_PIC, EPFL_LOGO, EPFL_PH_LINK, ERT_BLOG_POST, ERT_GITHUB, ERT_SPACE_RACE } from '@/config/links';
-import prisma from '@/lib/prisma';
+import { getAllPosts } from '@/lib/blog/posts';
 import { ChevronRight, ChevronsLeftRightEllipsis, Rss } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default async function Home() {
-	let post;
-
-	try {
-		post = await prisma.post.findFirst({
-			where: {
-				published: true,
-			},
-			orderBy: {
-				createdAt: 'desc',
-			},
-		});
-	} catch (error) {
-		console.info('Error fetching posts:', error);
-	}
+	const post = getAllPosts()[0];
 
 	return (
 		<>
@@ -203,7 +190,7 @@ export default async function Home() {
 											</div>
 										</div>
 										<div className="w-full lg:min-w-[455px] lg:max-w-[455px] relative overflow-hidden lg:h-full rounded-lg aspect-video">
-											<Image src={post.imageUrl} alt={post.title} width={1100} height={300} className="" />
+											<Image src={post.image} alt={post.title} width={1100} height={300} className="" />
 										</div>
 									</div>
 								</div>

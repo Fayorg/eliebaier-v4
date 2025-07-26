@@ -1,0 +1,108 @@
+---
+title: 'Space Race V'
+description: 'My experience participating in the 5th edition of Space Race, an EPFL Rocket Team program designed for first-year students. This isn’t a deep technical guide, but a personal reflection on what it’s like to build a rocket from scratch while learning how to learn.'
+image: 'https://eliebaier.fra1.cdn.digitaloceanspaces.com/posts/space-race-v/space-race-5.JPG'
+read: 10
+date: '13 July 2025'
+---
+
+# Space Race V
+
+Before diving into the rocket team, a quick note, this is my first post! I enjoy talking about tech, open source, and much more. Don’t hesitate to check back, I already have some ideas cooking behind the scenes.
+
+This post won’t be too technical, since it’s also meant for my non-technical family and friends. Too much jargon would probably bore them to death.
+
+## What is space race?
+
+**Space Race** is part of the EPFL Rocket Team. It’s a program designed for first-year students who want to join the organization and get a taste of what building a rocket really means. It’s run by a dedicated board and includes workshops during the first semester, followed by the construction and launch of your rocket in the second semester.
+
+After Space Race, members can either leave the organization or move on to contribute to the Rocket Team’s main projects.
+
+As for me, I joined the Rocket Team during my first semester as a physics undergrad and participated in the 5th edition of Space Race.
+
+## Workshops and Learning
+
+During the first semester, Space Race gives you the opportunity to attend workshops led by members from the various projects of the Rocket Team. They introduce their work and give us a basic understanding of how everything functions.
+
+For example, the image below was taken during the CAD and structures workshop:
+
+![Workshop CAD](https://eliebaier.fra1.cdn.digitaloceanspaces.com/posts/space-race-v/CADWORKSHOP.JPG)
+
+# The Design Process
+
+Like any project that ends up working, we had to iterate on the design. We started with a basic [OpenRocket](https://openrocket.info/) model to get the general shape and, more importantly, ensure the rocket would be stable in flight.
+
+![OpenRocket semi-final design](https://eliebaier.fra1.cdn.digitaloceanspaces.com/posts/space-race-v/OPENROCKET.jpg)
+
+At the same time, we set some objectives we wanted to achieve. For us, the main goals were:
+
+-   Implementing a **reefing recovery system** (more on that later),
+-   Adding a **payload** experiment,
+-   Capturing **flight footage**,
+-   Transmitting **live telemetry** from the rocket.
+
+With those goals and a rough design in mind, we split our team into smaller groups, each responsible for a specific subsystem. Together with a good friend of mine, I was to be in charge of the **avionics** with another teammate.
+
+# Overview of the Subsystems
+
+A simple rocket can be broken down into four main subsystems: **recovery**, **structure**, **avionics**, and **payload**. Here’s a quick overview:
+
+**Payload**. Ours was simple — an egg surrounded by a wooden structure, placed in a box. The goal? Make sure it survived the flight and landing without cracking.
+
+**Structure**. The rocket’s structure was also fairly basic. It used a cardboard tube as the main body with an internal wooden frame. We added a layer of fiberglass over it, which made the rocket strong enough to survive launch and landing.
+
+**Recovery**. Instead of using the classic dual-parachute setup (drogue + main), we chose a single parachute that releases in stages — staying compact during most of the descent and expanding right before impact to slow the vehicle down. This technique is called **reefing**.
+
+![Con-OPS](https://eliebaier.fra1.cdn.digitaloceanspaces.com/posts/space-race-v/DIACONOPS.jpg)
+
+## Avionics
+
+The process for us was pretty straightforward: we had the requirements, and we needed to build the electronics to make them work.
+
+The first question was how to fuse the data from each sensor into something that made sense. After some research, we found several fusion algorithms that could work for us, but we ultimately settled on the [Madgwick filter](https://ahrs.readthedocs.io/en/latest/filters/madgwick.html) due to its relative simplicity and low processing requirements.
+
+We started by testing each component individually: accelerometer, magnetometer, gyroscope, and barometer. Once we had each sensor working, we built a prototype on a breadboard with everything connected and wrote basic code to fetch the sensor data and fuse it using the Madgwick filter.
+
+Eventually, we decided to try making a custom PCB in KiCad, but we realized we wouldn’t receive the parts before the flight. So, we did the next best thing: soldered all the components onto a veroboard, secured everything with hot glue, and called it good enough for launch.
+
+Another requirement was live telemetry from the rocket to the ground. Since we were already using ESP32s for our avionics, the simplest solution was to use ESP-NOW, which allows "long-range" communication between ESPs. Anyone who has worked with RF knows it can feel like black magic — and for us, it was no different. Sometimes, we’d receive data reliably. Other times, it would just stop working randomly.
+
+At this stage, we also designed a 3D-printed holder for all the components and confirmed that powering everything using six AA batteries (2 block of 3 AA batteries in parallel for greater capacity) would work (at least, this part didn’t cause problems).
+
+![Avionics fully assembled](https://eliebaier.fra1.cdn.digitaloceanspaces.com/posts/space-race-v/AVASSEMBLED.jpg)
+
+Like any good project, things wouldn’t be complete without a bit of chaos: Five days before launch, I realized our existing code was too messy and unreliable. So, I rewrote it almost entirely — except for the parts fetching sensor data and running the Madgwick filter, since those were working fine.
+
+For five days straight, with barely any breaks, I redesigned the flight computer, making it reliable and fault-tolerant. I also built a state machine controller to enable or disable certain features based on the rocket's state (apogee, reef, landed, etc.), and set up data logging both to an SD card and the onboard flash of the ESP.
+
+To top it off, I developed a Three.js-based website that allowed us to monitor the rocket’s state in real-time.
+
+![Web dashboard to view the telemetry](https://eliebaier.fra1.cdn.digitaloceanspaces.com/posts/space-race-v/AVDASHBOARD.jpg)
+
+Finally, on launch day — after an all-nighter and some last-minute bug fixing under a table in the launch field — we launched, and everything worked as planned... except for the parachute, which failed to unreef. The likely cause was a faulty ematch that failed to trigger the charge to cut the line and deploy the chute fully.
+
+But we had telemetry throughout the entire flight, and we recovered the rocket in one piece.
+
+_All the code is available on [my github page](https://github.com/Fayorg/ert-avionics). Keep in mind: this should only serve as a starting point. It’s not production-ready — many features are missing, and parts of the code need a rewrite, since a lot of it was rushed to get ready in time._
+
+# What Space Race Taught Me
+
+Looking back, Space Race was one of the most valuable experiences of my first year at EPFL. It wasn’t just about building a rocket — it was about learning how to work in a team, solve real engineering problems, and push through challenges under time pressure. I learned that no project ever goes as planned, but that’s part of the process. From last-minute code rewrites to soldering avionics by hand the night before launch, every step taught me something new.
+
+One of the biggest lessons was learning how to teach myself. Unlike courses with clear roadmaps and well-written documentation, building a rocket — especially avionics — forces you to figure things out in areas where guides simply don’t exist. Sometimes the only resources were scattered forum posts or old academic papers, and often there wasn’t a right answer — just a rough direction and a lot of trial and error. **And honestly, that’s what I enjoyed the most.** It pushed me into new fields I had never touched before, like PCB design, where I had to learn fast and adapt on the fly. Space Race taught me how to move forward even when the path wasn’t clear, to **learn how to learn**, and to push through rough patches without giving up.
+
+## Next step for me at Rocket Team
+
+Joining the Avionics team at Competition feels like the natural next step for me after participating in Space Race V. What I loved most during Space Race was diving into completely new fields without a clear path or guide—figuring things out from scratch, learning how to learn. Avionics was exactly that: building flight computers from zero, designing my first custom PCBs, and dealing with sensors that sometimes felt more like black magic than engineering. Every problem forced me to dig deeper, test ideas hands-on, and learn fast in a field with little documentation and no clear answers. That was, without a doubt, what I enjoyed most.
+
+Now, I want to build on that. Competition offers the opportunity to take those skills to the next level, working in a team where reliability, precision, and performance are not optional but essential. I’m looking forward to collaborating with people who share the same energy and passion for solving difficult problems. I want to contribute to systems that must work—where failure analysis, software architecture, and hardware design are all pushed much further than what I’ve experienced before.
+
+Ultimately, I see Competition not just as a continuation of what I’ve done, but as a way to challenge myself both technically and personally. It’s an opportunity to gain real hands-on experience—designing, building, and troubleshooting systems which I know will be valuable for my future career in engineering. I want to help the team move forward, learn from people more experienced than me, and keep chasing that feeling of building something real from nothing.
+
+## Closing thoughts
+
+If you're considering joining the EPFL Rocket Team or a similar student project, I highly recommend it. You’ll learn much more than you expect — not just about rockets, but about yourself.
+
+This picture was taken when we had to relocate the rocket — yes, it barely fit in my car — to another spot for the ejection tests. Why? Because using black powder to blow things apart tends to make a bit of noise… and maybe attract the wrong kind of attention.
+
+![Transporting the Rocket](https://eliebaier.fra1.cdn.digitaloceanspaces.com/posts/space-race-v/TRANSPORT.jpg)

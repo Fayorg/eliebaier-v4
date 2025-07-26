@@ -1,26 +1,24 @@
 import { Book, Heart, PencilRuler } from 'lucide-react';
 import { MDXRemote } from 'next-mdx-remote-client/rsc';
 import Image from 'next/image';
-import { notFound, redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { Sidebar } from './sidebar';
 import { isAtLeastOneDayAfter } from '@/lib/date';
 import { Metadata } from 'next';
-import { getPostBySlug } from '@/sdk/blog';
 import { H1, H2, P } from '@/components/blog/text';
 import { IMG } from '@/components/blog/image';
 import { Footer } from '@/components/sections/footer';
 import { ELIE_PROFILE_PIC } from '@/config/links';
 import { DottedList } from '@/components/blog/list';
-
-export const revalidate = 300;
+import { getAllPosts, getPostBySlug } from '@/lib/blog/posts';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
 	const { slug } = await params;
 
-	const post = await getPostBySlug(slug, {});
+	const post = getPostBySlug(slug);
 	if (!post) return {};
 
-	const { title, imageUrl, description } = post;
+	const { title, image, description } = post;
 	return {
 		title,
 		description,
@@ -30,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 			url: `https://eliebaier.com/blog/${slug}`,
 			images: [
 				{
-					url: imageUrl,
+					url: image,
 					width: 1200,
 					height: 630,
 				},
@@ -40,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 			card: 'summary_large_image',
 			title,
 			description,
-			images: [imageUrl],
+			images: [image],
 		},
 		icons: {
 			icon: '/favicon.ico',
@@ -57,26 +55,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function BlogPage({ params }: { params: Promise<{ slug: string }> }) {
 	const { slug } = await params;
 
-	let post;
-	try {
-		post = await getPostBySlug(slug, {});
-	} catch (err) {
-		// TODO: Log the error
-		console.error('Error fetching blog post:', err);
-		redirect('/blog');
-	}
-	if (!post || !post.contentUrl) return notFound();
+	const post = getPostBySlug(slug);
+	if (!post) return notFound();
 
-	const { title, imageUrl, description, readDuration, createdAt, updatedAt } = post;
-
-	const raw = await (await fetch(post.contentUrl, {})).text();
+	const { title, image, description, readDuration, date, content } = post;
 
 	return (
 		<>
 			<main className="max-w-[69rem] w-full m-auto">
-				{imageUrl && (
+				{image && (
 					<div className="w-full h-64 relative">
-						<Image src={imageUrl} fill alt={title} className="object-cover" priority />
+						<Image src={image} fill alt={title} className="object-cover" priority />
 						<div className="absolute w-full h-full z-10 bg-gradient-to-b from-transparent to-background" />
 					</div>
 				)}
@@ -93,15 +82,15 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
 								<p className="font-sans text-xl font-bold ">Elie Baier</p>
 								<div className="flex gap-0">
 									<p className="text-base text-white/80 -mt-1">
-										{createdAt.getDate() +
+										{date.getDate() +
 											' ' +
-											createdAt.toLocaleString('default', {
+											date.toLocaleString('default', {
 												month: 'long',
 											}) +
 											' ' +
-											createdAt.getFullYear()}
+											date.getFullYear()}
 									</p>
-									{isAtLeastOneDayAfter(updatedAt, createdAt) && (
+									{isAtLeastOneDayAfter(date, date) && (
 										<div className="flex items-center -mt-1 gap-2 group">
 											<PencilRuler size={16} className="inline ml-2 opacity-60" />
 										</div>
@@ -129,7 +118,7 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
 					<div className="w-full flex flex-row relative gap-8">
 						<div className="pb-8 w-full md:w-9/12">
 							<MDXRemote
-								source={raw}
+								source={content}
 								components={{
 									h1: H1,
 									h2: H2,
@@ -153,4 +142,12 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
 			<Footer />
 		</>
 	);
+}
+
+export async function generateStaticParams() {
+	const posts = getAllPosts();
+
+	return posts.map((post) => ({
+		slug: post.slug,
+	}));
 }

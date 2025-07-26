@@ -1,6 +1,6 @@
 'use client';
 
-import { Post } from '@/app/generated/prisma';
+import { Post } from '@/lib/blog/posts';
 import { Book, Clock } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -21,18 +21,18 @@ export default function AllPostsComponent({ posts }: { posts: Post[] }) {
 				{posts
 					.filter((post) => (post.title.includes(search) || post.description.includes(search) ? post : null))
 					.map((post) => (
-						<BlogPostCard key={post.id} title={post.title} description={post.description} imageUrl={post.imageUrl} createdAt={post.createdAt} readDuration={post.readDuration} slug={post.slug} />
+						<BlogPostCard key={post.slug} title={post.title} description={post.description} image={post.image} date={post.date} readDuration={post.readDuration} slug={post.slug} />
 					))}
 			</div>
 		</>
 	);
 }
 
-function BlogPostCard({ title, description, imageUrl, createdAt, readDuration, slug }: Pick<Post, 'title' | 'description' | 'createdAt' | 'slug' | 'readDuration' | 'imageUrl'>) {
+function BlogPostCard({ title, description, image, date, readDuration, slug }: Pick<Post, 'title' | 'description' | 'date' | 'slug' | 'readDuration' | 'image'>) {
 	return (
 		<Link className="w-full flex flex-col md:flex-row gap-2 md:gap-8 justify-start" href={`/blog/${slug}`}>
 			<div className="relative aspect-video w-full md:h-42 rounded-2xl overflow-hidden md:w-[298px]">
-				<Image alt={title} fill src={imageUrl} className="object-cover" />
+				<Image alt={title} fill src={image} className="object-cover" />
 				<div className="absolute md:hidden h-8 px-2 bg-background bottom-2 left-2 flex items-center justify-center rounded-lg">
 					<div className="md:hidden flex gap-1 items-center opacity-80">
 						<Clock size={18} />
@@ -43,13 +43,13 @@ function BlogPostCard({ title, description, imageUrl, createdAt, readDuration, s
 			<div className="flex flex-col justify-between mt-1 mb-2 w-full md:max-w-[calc(100%-306px)]">
 				<div>
 					<p className="text-base text-white/80 mb-1 hidden md:block">
-						{createdAt.toLocaleString('default', {
+						{date.toLocaleString('default', {
 							month: 'long',
 						}) +
 							' ' +
-							createdAt.getDate() +
+							date.getDate() +
 							', ' +
-							createdAt.getFullYear()}
+							date.getFullYear()}
 					</p>
 					<h3 className="text-2xl md:text-3xl font-sans">{title}</h3>
 					<p className="text-lg text-white/80">{description}</p>
