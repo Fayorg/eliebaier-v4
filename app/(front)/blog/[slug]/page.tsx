@@ -16,6 +16,7 @@ import { Code } from '@/components/blog/code';
 import './humanoid-dark.css';
 import 'katex/dist/katex.min.css';
 import { GenerateOptionForMDXViewer } from '@/lib/blog/libraries';
+import { Caution, Important, Note, Tip, Warning } from '@/components/blog/alerts';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
 	const { slug } = await params;
@@ -141,6 +142,11 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
 									code: Code,
 									sup: Sup,
 									a: A,
+									Important,
+									Note,
+									Warning,
+									Tip,
+									Caution,
 								}}
 							/>
 						</div>
