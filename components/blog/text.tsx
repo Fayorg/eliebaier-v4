@@ -28,3 +28,15 @@ export function H2({ children }: { children: ReactNode }) {
 export function P({ children }: { children: ReactNode }) {
 	return <p className="text-base text-white/80 mb-6 mt-2">{children}</p>;
 }
+
+export function Sup({ children }: { children: ReactNode }) {
+	return <sup className="text-primary font-bold">{children}</sup>;
+}
+
+export function A({ children, href }: { children: ReactNode; href: string }) {
+	return (
+		<Link href={href} className="text-primary hover:underline underline-offset-2" target="_blank" rel="noopener noreferrer">
+			{children}
+		</Link>
+	);
+}

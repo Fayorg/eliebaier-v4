@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import { Sidebar } from './sidebar';
 import { isAtLeastOneDayAfter } from '@/lib/date';
 import { Metadata } from 'next';
-import { H1, H2, P } from '@/components/blog/text';
+import { A, H1, H2, P, Sup } from '@/components/blog/text';
 import { IMG } from '@/components/blog/image';
 import { Footer } from '@/components/sections/footer';
 import { ELIE_PROFILE_PIC } from '@/config/links';
@@ -145,6 +145,8 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
 									img: IMG,
 									ul: DottedList,
 									code: Code,
+									sup: Sup,
+									a: A,
 								}}
 							/>
 						</div>
