@@ -12,7 +12,10 @@ export type Post = {
     date: Date,
     readDuration: string,
     content: string,
+    include?: IncludeType[],
 }
+
+export type IncludeType = 'math' | 'code';
 
 export function getAllPosts(): Post[] {
     const fileNames = fs.readdirSync(postsDirectory);
@@ -35,6 +38,7 @@ export function getAllPosts(): Post[] {
                 date: new Date(frontmatter.date) || new Date(),
                 readDuration: frontmatter.read || '0 min',
                 visible: frontmatter.visible !== undefined ? frontmatter.visible : false,
+                include: frontmatter.include || [],
             },
         };
     });
@@ -76,6 +80,7 @@ export function getPostBySlug(slug: string): Post | null {
             image: frontmatter.image || '',
             date: new Date(frontmatter.date) || new Date(),
             readDuration: frontmatter.read || '0 min',
+            include: frontmatter.include || [],
         },
         content,
     };

@@ -11,15 +11,11 @@ import { Footer } from '@/components/sections/footer';
 import { ELIE_PROFILE_PIC } from '@/config/links';
 import { DottedList } from '@/components/blog/list';
 import { getAllPosts, getPostBySlug } from '@/lib/blog/posts';
-
-import remark_gfm from 'remark-gfm';
-import remark_math from 'remark-math';
-import rehype_katex from 'rehype-katex';
-import rehype_highlight from 'rehype-highlight';
 import { Code } from '@/components/blog/code';
 
 import './humanoid-dark.css';
 import 'katex/dist/katex.min.css';
+import { GenerateOptionForMDXViewer } from '@/lib/blog/libraries';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
 	const { slug } = await params;
@@ -67,7 +63,10 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
 	const post = getPostBySlug(slug);
 	if (!post) return notFound();
 
-	const { title, image, description, readDuration, date, content } = post;
+	const { title, image, description, readDuration, date, content, include } = post;
+
+	const options = await GenerateOptionForMDXViewer(include);
+	console.log('MDX Options:', options);
 
 	return (
 		<>
@@ -128,12 +127,7 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
 						<div className="pb-8 w-full md:w-9/12">
 							<MDXRemote
 								source={content}
-								options={{
-									mdxOptions: {
-										remarkPlugins: [remark_gfm, remark_math],
-										rehypePlugins: [rehype_katex, rehype_highlight],
-									},
-								}}
+								options={options}
 								components={{
 									h1: H1,
 									h2: H2,
