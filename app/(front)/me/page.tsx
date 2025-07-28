@@ -1,67 +1,13 @@
 import { Footer } from '@/components/sections/footer';
 import { EliesSignature } from '@/components/utils/signature';
-import { DIGITAL_CANION_LOGO, ELIE_PROFILE_PIC, EPFL_LINK, EPFL_LOGO, EPFL_PH_LINK, GYMNASE_NYON_LINK, GYMNASE_NYON_LOGO } from '@/config/links';
+import { experiences } from '@/config/experiences';
+import { ELIE_PROFILE_PIC } from '@/config/links';
 import { cn } from '@/lib/cn';
 import { GraduationCap, Sparkle } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function MePage() {
-	const work = [
-		// {
-		// 	title: 'Avionics Team Member',
-		// 	company: 'EPFL Rocket Team',
-		// 	location: 'Switzerland, Lausanne',
-		// 	startDate: 'JUL 2025',
-		// 	endDate: null,
-		// 	description: 'Contributing to the avionics systems of the EPFL Rocket Team, focusing on embedded systems and real-time telemetry.',
-		// },
-		{
-			title: 'Intern - Bureaux Techniques (BT)',
-			// company: 'École Polytechnique Fédérale de Lausanne (EPFL), BT Division',
-			company: 'EPFL, BT',
-			location: 'Lausanne, Switzerland',
-			startDate: 'OCT 2024',
-			endDate: null,
-			logo: EPFL_LOGO,
-			link: EPFL_LINK,
-			description: "As an intern at EPFL's Bureaux Techniques (BT), I work alongside architects and electrical engineers who oversee the maintenance and development of the campus infrastructure. My responsibilities include updating technical documentation for existing facilities and new construction projects, supporting various IT-related needs within the team, and occasionally developing custom software tools to improve internal workflows. This role allows me to gain hands-on experience in a multidisciplinary environment while earning supplementary income during my studies.",
-		},
-		{
-			title: 'Undergraduate Student in Physics',
-			// company: 'École Polytechnique Fédérale de Lausanne (EPFL)',
-			company: 'EPFL',
-			location: 'Lausanne, Switzerland',
-			startDate: 'SEP 2024',
-			endDate: null,
-			logo: EPFL_LOGO,
-			link: EPFL_PH_LINK,
-			description: "I am currently pursuing a Bachelor's degree in Physics, where I explore both theoretical and applied aspects of the field. With a strong foundation in mathematics and a long-standing passion for computing and technology, I approach my studies with curiosity and a hands-on mindset. Outside of coursework, I continue to develop personal software projects, manage my own server infrastructure, and stay actively engaged in learning new technologies.",
-		},
-		{
-			title: 'High School Graduate - Mathematics and Physics Focus',
-			company: 'Gymnase de Nyon',
-			location: 'Nyon, Switzerland',
-			startDate: 'SEP 2021',
-			endDate: 'JUL 2024',
-			logo: GYMNASE_NYON_LOGO,
-			link: GYMNASE_NYON_LINK,
-			size: 1.5,
-			description: 'I completed my secondary education at the Gymnase de Nyon, where I specialized in mathematics and physics. This program provided a strong academic foundation in analytical thinking and scientific reasoning, preparing me for further studies in the physical sciences.',
-		},
-		{
-			title: 'IT & Network Infrastructure Intern',
-			company: 'DigitalCanion',
-			location: 'Estavayer-le-Lac, Switzerland',
-			startDate: 'SEP 2020',
-			endDate: 'JUL 2021',
-			logo: DIGITAL_CANION_LOGO,
-			size: 0.7,
-			description:
-				'During my internship at DigitalCanion, I worked on the design and maintenance of networking infrastructure across campus environments and data centers, with a strong focus on high-availability systems where zero downtime was critical. I gained hands-on experience in managing and securing complex networks, implementing best practices in cybersecurity, and troubleshooting mission-critical infrastructure. In addition to technical responsibilities, I managed a portfolio of clients with diverse requirements—ranging from small businesses to larger organizations—ensuring tailored solutions and reliable ongoing support.',
-		},
-	];
-
 	return (
 		<>
 			<div className="max-w-[69rem] w-11/12 m-auto pb-4 lg:pb-0 pt-20">
@@ -111,7 +57,7 @@ export default function MePage() {
 						My Education & Experience
 					</h3>
 
-					{work.map((job, index) => (
+					{experiences.map((job, index) => (
 						<div className="flex mt-8 gap-0 lg:gap-8 flex-col lg:flex-row" key={index}>
 							<p className="uppercase text-lg text-white/80 min-w-64 max-w-64">
 								{job.startDate} <span>-</span> {job.endDate ? job.endDate : 'Present'}

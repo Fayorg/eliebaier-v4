@@ -25,3 +25,5 @@ export const GYMNASE_NYON_LINK = 'https://moodle.gymnyon.vd.ch/';
 export const DIGITAL_CANION_LOGO = "https://eliebaier.fra1.cdn.digitaloceanspaces.com/DIGITALCANION.png";
 export const DIGITAL_CANION_LINK = 'https://www.digitalcanion.ch/';
 export const EPFL_LINK = 'https://www.epfl.ch/en';
+export const MGH_LINK = 'https://gupta.bwh.harvard.edu/news/';
+export const MGH_LOGO = 'https://eliebaier.fra1.cdn.digitaloceanspaces.com/MGH-HVD.png';
