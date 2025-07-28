@@ -12,6 +12,15 @@ import { ELIE_PROFILE_PIC } from '@/config/links';
 import { DottedList } from '@/components/blog/list';
 import { getAllPosts, getPostBySlug } from '@/lib/blog/posts';
 
+import remark_gfm from 'remark-gfm';
+import remark_math from 'remark-math';
+import rehype_katex from 'rehype-katex';
+import rehype_highlight from 'rehype-highlight';
+import { Code } from '@/components/blog/code';
+
+import './humanoid-dark.css';
+import 'katex/dist/katex.min.css';
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
 	const { slug } = await params;
 
@@ -119,6 +128,12 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
 						<div className="pb-8 w-full md:w-9/12">
 							<MDXRemote
 								source={content}
+								options={{
+									mdxOptions: {
+										remarkPlugins: [remark_gfm, remark_math],
+										rehypePlugins: [rehype_katex, rehype_highlight],
+									},
+								}}
 								components={{
 									h1: H1,
 									h2: H2,
@@ -129,6 +144,7 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
 									p: P,
 									img: IMG,
 									ul: DottedList,
+									code: Code,
 								}}
 							/>
 						</div>
