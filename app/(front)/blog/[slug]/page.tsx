@@ -67,7 +67,6 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
 	const { title, image, description, readDuration, date, content, include } = post;
 
 	const options = await GenerateOptionForMDXViewer(include);
-	console.log('MDX Options:', options);
 
 	return (
 		<>
