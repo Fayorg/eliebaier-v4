@@ -3,7 +3,7 @@ import { Flag, Lightbulb, OctagonX, PenTool, TriangleAlert } from 'lucide-react'
 
 export function Important({ children }: { children: React.ReactNode }) {
 	return (
-		<AlertBase title="Important" className="bg-purple-100/80 border-purple-600 text-purple-900" icon={<Flag size={20} />}>
+		<AlertBase title="Important" className="bg-purple-200/80 border-purple-600 text-purple-950" icon={<Flag size={20} />}>
 			{children}
 		</AlertBase>
 	);
