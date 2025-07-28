@@ -3,8 +3,8 @@ import { IncludeType } from "./posts";
 import remark_gfm from 'remark-gfm';
 
 export async function GenerateOptionForMDXViewer(include?: IncludeType[]): Promise<EvaluateOptions<Record<string, unknown>>> {
-    let remarkPlugins = [];
-    let rehypePlugins = [];
+    const remarkPlugins = [];
+    const rehypePlugins = [];
     remarkPlugins.push(remark_gfm);
 
     if (include?.includes('math')) {
