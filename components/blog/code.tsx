@@ -37,11 +37,11 @@ export function Code({ children }: { children: React.ReactNode }) {
 	};
 
 	return (
-		<pre className="relative overflow-x-auto rounded-lg bg-gray-800 p-4 text-base text-white/80">
-			<div className="absolute right-2 top-2 hover:bg-white/20 p-2 rounded-md transition-all duration-200 cursor-pointer" onClick={handleCopy}>
+		<div className="relative">
+			<div className="absolute right-2 top-2 z-10 hover:bg-white/20 p-2 rounded-md transition-all duration-200 cursor-pointer" onClick={handleCopy}>
 				<Copy size={20} />
 			</div>
-			{children}
-		</pre>
+			<pre className="overflow-x-auto rounded-lg bg-gray-800 p-4 text-base text-white/80">{children}</pre>
+		</div>
 	);
 }
