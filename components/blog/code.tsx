@@ -37,7 +37,7 @@ export function Code({ children }: { children: React.ReactNode }) {
 	};
 
 	return (
-		<div className="relative">
+		<div className="relative mb-6 mt-2">
 			<div className="absolute right-2 top-2 z-10 hover:bg-white/20 p-2 rounded-md transition-all duration-200 cursor-pointer" onClick={handleCopy}>
 				<Copy size={20} />
 			</div>
