@@ -26,7 +26,7 @@ export default async function Home() {
 											<div className="w-2 h-2 bg-primary rounded-full" />
 											<p className="text-sm sm:text-base text-white/80">Studying physics at </p>
 											<Link href={EPFL_PH_LINK} target={'_blank'} className="border-b-1 pb-1 translate-y-0.5 border-white/80 cursor-alias">
-												<Image alt="EPFL Logo" width={42} height={12} src={EPFL_LOGO} />
+												<Image alt="EPFL Logo" width={1280} height={372} src={EPFL_LOGO} className="h-3 w-auto" />
 											</Link>
 										</div>
 									</BackgroundBlurredContainer>
@@ -68,7 +68,7 @@ export default async function Home() {
 								<div className="w-full md:w-2/5 flex justify-center items-center">
 									<div className="w-full flex p-6 border-1 max-w-[25rem] pb-32 border-white/20 scale-75 -rotate-z-[5deg] -translate-y-5 flex-col relative hover:scale-[80%] hover:border-white/80 transition-all duration-200 group">
 										<div className="relative w-full aspect-square">
-											<Image src={ELIE_PROFILE_PIC} alt={'Photo of me during snowboard trip'} fill />
+											<Image src={ELIE_PROFILE_PIC} alt={'Photo of me during snowboard trip'} width={1200} height={1200} className="object-cover" />
 										</div>
 
 										<div className="absolute bottom-2 right-8 opacity-80 group-hover:opacity-100 transition-all duration-200">
@@ -123,13 +123,13 @@ export default async function Home() {
 										</div>
 									</div>
 									<div className="w-full lg:min-w-[455px] lg:max-w-[455px] relative overflow-hidden lg:h-full rounded-lg aspect-video">
-										<Image src={ERT_SPACE_RACE} alt={'Avionics SR'} width={1100} height={300} className="" />
+										<Image src={ERT_SPACE_RACE} alt={'Avionics SR'} width={1600} height={1200} className="object-cover" />
 									</div>
 								</div>
 
 								<div className="flex justify-between lg:h-64 gap-2 lg:gap-12 flex-col lg:flex-row">
 									<div className="w-full lg:max-w-[455px] lg:min-w-[455px] relative overflow-hidden lg:h-full rounded-lg aspect-video">
-										<Image src={DEPLOY} alt={'Deploy'} width={1100} height={300} className="" />
+										<Image src={DEPLOY} alt={'Deploy'} width={2742} height={1840} className="object-cover" />
 									</div>
 
 									<div className="flex flex-col justify-between py-2 gap-4 lg:gap-0">
@@ -190,7 +190,7 @@ export default async function Home() {
 											</div>
 										</div>
 										<div className="w-full lg:min-w-[455px] lg:max-w-[455px] relative overflow-hidden lg:h-full rounded-lg aspect-video">
-											<Image src={post.image} alt={post.title} width={1100} height={300} className="" />
+											<Image src={post.image} alt={post.title} width={455} height={300} className="object-cover" />
 										</div>
 									</div>
 								</div>
