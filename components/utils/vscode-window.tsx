@@ -1,4 +1,4 @@
-import { HoverEffect } from './utils';
+import { HoverEffect } from './';
 import { Files, GitBranch, Search, Play, Bug, Blocks, Settings, CircleUserRound, CloudUpload } from 'lucide-react';
 
 export function VSCodeWindow() {
