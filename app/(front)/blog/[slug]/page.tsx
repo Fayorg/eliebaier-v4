@@ -3,7 +3,6 @@ import { MDXRemote } from 'next-mdx-remote-client/rsc';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Sidebar } from './sidebar';
-import { isAtLeastOneDayAfter } from '@/lib/date';
 import { Metadata } from 'next';
 import { A, H1, H2, P, Sup } from '@/components/blog/text';
 import { IMG } from '@/components/blog/image';
@@ -98,11 +97,6 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
 											' ' +
 											date.getFullYear()}
 									</p>
-									{isAtLeastOneDayAfter(date, date) && (
-										<div className="flex items-center -mt-1 gap-2 group">
-											<PencilRuler size={16} className="inline ml-2 opacity-60" />
-										</div>
-									)}
 								</div>
 							</div>
 						</div>
