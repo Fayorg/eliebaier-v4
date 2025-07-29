@@ -1,0 +1,70 @@
+---
+title: 'Image Optimization in NextJS (15)'
+description: 'Learn everything about images optimization in NextJS and how to selfhost them.'
+image: 'https://eliebaier.fra1.cdn.digitaloceanspaces.com/posts/template/template.webp'
+read: 15
+date: '29 July 2025'
+visible: false
+include: ['code']
+---
+
+# Why image optimization Matters
+
+Image optimization is crucial in any website. Often images make up for the majority of a page's weight and if you don't optimize them it can significantly reduce page load time and impact SEO score (image are [LCP candidate](https://web.dev/articles/lcp#what-elements-are-considered)).
+
+For example, Google uses loading time as a ranking factor and faster loading time also help to crawl more page of your website in less time imrpoving your site's chance to get indexed thoroughly and accurately leading to more organic traffic.
+
+Another factor is that user are more and more coming from mobile devices with usually slower connection. Studies show that if you're website doesn't load in less than 3 second, **40% of your user will leave the page** but if your site load fast it gives user a better experience and they are more likely to come back, improving user loyalty, which is essential for long-term retention.
+
+<Note>Obviously image are not the only way to optimize loading speed of a website, you can also look into browser caching, CDN (we'll talk about it but only for images) and minimizing Javascript and CSS</Note>
+
+# Image optimization with next/image
+
+Next.JS out of the box provide a good optimization for images. If you're hosting your website and images on [Vercel](https://vercel.com/) there's almost nothing more you can do to optimize images, but if you plan to use another hosting plateform or even selfhost it, there's definitely things you can do to make your images load faster.
+
+## How next/image works?
+
+I've seen a lot of confusion about how to use next/image, especially since the introduction of the App Router which slightly changed how images work. So let's break it down.
+
+<Important>Before proceeding, I highly encorage you to read the Next.JS docs they give you a basic understanding for the following paragraphs.</Important>
+
+**Width and height**, these are where the confusion begins. These values are not the direct size that the image will take on your page, but [Intrinsic size](https://developer.mozilla.org/en-US/docs/Glossary/Intrinsic_Size). Like mentionned in the docs, this is to set the aspect-ratio for the browser to reserve the necessary space and avoid layout shifts (which is also used in the core web vitals[^1] to measure page performance). It means that in most cases you want to set these attributes to the actual dimensions of the image you're using (in pixels). If you want to set the width and the height of the rendered image on your page you should use CSS properties like (min/max) height/width.
+
+**Layout and fill**, the removal of layout got people even more confused, yet there is almost drop-in replacement for every layout cases. Old image optimization used 4 types of layout, "intrinsic", the default one, that resized the image to fit the width of the container up to the width passed in the props, "fixed" that applied the dimension passed in the image props, "responsive" that scaled to fit the width of the container and "fill" filling the container. With the new approch you can get the same result (and more) with CSS properties. For "responsive" (and "intrinsic"), you can set the width to 100% and the height to auto, for "fill" and "fixed" you can directly use width and height. You can also use the object-fit property like mentionned in the docs[^2].
+
+## What does next/image?
+
+First things first, let's look under the hood about what happens when you use Image tag from Next. Let's do a simple test and check the result in the developer tools in the browser.
+
+```tsx
+<Image src={'/image.png'} alt={'alt'} width={1100} height={300} />
+```
+
+With the default configuration of Next and image optimization enabled, we get:
+
+```html
+<img alt="alt" loading="lazy" width="1100" height="300" decoding="async" data-nimg="1" style="color:transparent" srcset="/_next/image?url=image.png&amp;w=1200&amp;q=75 1x, /_next/image?url=image.png&amp;w=3840&amp;q=75 2x" src="/_next/image?url=image.png&amp;w=3840&amp;q=75" />
+```
+
+Let's break down most important attributes: decoding, loading and srcset.
+
+**Decoding** is a hint for the browser as to when it should decode the image, "sync" will block rendering during decoding, "async" will allow the browser to continue rendering of the site while decoding the image[^3].
+
+**Loading** is a hint as to when to schedule loading the image, "eger" the default, tell the browser to load the image as soon as the img tag is loaded and the "lazy" will hold the loading of the image until the browser feel it is necessary (usually when the image appear in the viewport)[^4].
+
+**Srcset** tells the browser that multiple version of the image exist at different size and resolution letting it choose the most appropriate one.
+
+## Configuration example
+
+# Hosting Images on a CDN
+
+## With support for optimization
+
+## Without support for optimization
+
+# Conclusion: serving images the smart way
+
+[^1]: [Core Web Vitals](https://developers.google.com/search/docs/appearance/core-web-vitals) by Google
+[^2]: [Fill property](https://nextjs.org/docs/app/api-reference/components/image#fill) in Next.JS docs
+[^3]: [Decoding](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/decoding) docs (MDN)
+[^4]: [Loading](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/loading) docs (MDN)
