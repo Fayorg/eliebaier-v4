@@ -3,6 +3,7 @@ import { Bricolage_Grotesque, Manrope } from 'next/font/google';
 import './globals.css';
 import ReactLenis from 'lenis/react';
 import Navigation from '@/components/sections/navigation';
+import Script from 'next/script';
 
 const bricolageGrotesque = Bricolage_Grotesque({
 	variable: '--font-bri-sans',
@@ -27,6 +28,7 @@ export default function RootLayout({
 	return (
 		<html lang="en" className="scroll-smooth">
 			<body className={`${bricolageGrotesque.variable} ${manrope.variable} antialiased`}>
+				<Script src="/api/script.js" data-site-id="1" strategy="afterInteractive" />
 				<ReactLenis
 					root
 					options={{

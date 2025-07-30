@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -12,6 +11,18 @@ const nextConfig: NextConfig = {
             pathname: "/**",
         },
     ],
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/api/script.js",
+        destination: `https://tracking.eliebaier.ch/api/script.js`,
+      },
+      {
+        source: "/api/track",
+        destination: `https://tracking.eliebaier.ch/api/track`,
+      },
+    ]
   },
 };
 
