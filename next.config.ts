@@ -16,11 +16,11 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/api/script.js",
-        destination: `https://tracking.eliebaier.ch/api/script.js`,
+        destination: `${process.env.NEXT_PUBLIC_RYBBIT_HOST}/api/script.js`,
       },
       {
         source: "/api/track",
-        destination: `https://tracking.eliebaier.ch/api/track`,
+        destination: `${process.env.NEXT_PUBLIC_RYBBIT_HOST}/api/track`,
       },
     ]
   },
