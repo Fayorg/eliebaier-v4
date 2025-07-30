@@ -28,7 +28,7 @@ export default function RootLayout({
 	return (
 		<html lang="en" className="scroll-smooth">
 			<body className={`${bricolageGrotesque.variable} ${manrope.variable} antialiased`}>
-				<Script src="/api/script.js" data-site-id="1" strategy="afterInteractive" />
+				<Script src="https://tracking.eliebaier.ch/api/script.js" data-site-id="1" strategy="afterInteractive" />
 				<ReactLenis
 					root
 					options={{
