@@ -1,4 +1,4 @@
-import { Book, Heart, PencilRuler } from 'lucide-react';
+import { Book, Heart } from 'lucide-react';
 import { MDXRemote } from 'next-mdx-remote-client/rsc';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
