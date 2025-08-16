@@ -48,6 +48,8 @@ export function getAllPosts(): Post[] {
             return false;
         }
         return true;
+    }).sort((a, b) => {
+        return b.date.getTime() - a.date.getTime();
     });
 }
 
