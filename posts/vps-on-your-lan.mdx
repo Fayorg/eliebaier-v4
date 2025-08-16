@@ -1,0 +1,131 @@
+---
+title: 'VPS on your Home Network'
+description: "Let's talk about how we can, with VPN, blur the line between your home network and your VPS(s)"
+image: 'https://fra1.digitaloceanspaces.com/eliebaier/posts/vps-on-your-lan/vps-on-your-lan.webp'
+read: 13
+date: '16 August 2025'
+visible: false
+include: ['code']
+---
+
+# Introduction
+
+I'm in the process of redesigning my home network, reimagining the separation between the servers that I run in my basement, the guest Wi-Fi endpoint, and removing unnecessary components. I also wanted to find a way to access some services that run on a VPS without exposing them to the internet. For example, I want to be able to run Portainer Agent on my VPS(s) and have a main dashboard only available on my home network where I can manage all my VPS. Obviously, this is not the only reason, but just an example.
+
+The plan is to have a VPN server running on my home network, where the VPS will be able to connect and get a local IP address. In my case, my firewall is from UniFi, so I won't be covering how to install a VPN server, and I will be using the WireGuard option available in UniFi OS.
+
+# VPN Configuration
+
+To get started, you will need a VPN server running inside your home network and exposed to the internet. I recommend running **Wireguard** and running it on **a separate VLAN** with some firewall rules denying access to anything on your home network. This way, you will be able to connect to your VPS as if it were a local machine, but any connections coming from the VPS won't be able to access your home network. In my case, I created a VLAN with a 192.168.101.0/24 subnet, and each VPS will be assigned a static IP on this subnet.
+
+## Server
+
+My server runs Ubuntu 22.04 with Docker containers. To get started, we will update it and install Wireguard.
+
+```sh
+sudo apt-get update && sudo apt-get upgrade
+
+# Installing Wireguard
+sudo apt-get install wireguard
+```
+
+We will now write the Wireguard configuration to allow the VPS to connect to your VPN server.
+
+```sh
+# Creating a new configuration file for wireguard
+sudo nano /etc/wireguard/wg0.conf
+```
+
+The configuration will vary depending on your setup, but in my case I have the following (minus the private/public keys).
+
+```conf
+[Interface]
+PrivateKey = <client-private>
+Address = 192.168.101.2/32
+DNS = 192.168.101.1
+
+[Peer]
+PublicKey = <server-public>
+Endpoint = your-ip-or-domain.com:51820
+AllowedIPs = 192.168.101.1/24
+```
+
+Let's break down the configuration.
+
+**PrivateKey** is your client private key. You can generate it, or in my case, I downloaded the config file from UniFi OS and edited it with a text editor.
+
+**Address** is the local IP that the VPS will use. You will be able to access all services available on your VPS through this IP. If you followed my recommendation, this IP should be on your newly created VLAN.
+
+**DNS**, optional, but in my case, I run a local DNS server, so I want to use it.
+
+**PublicKey** is your VPN server's public key. Again, in my case, it is extracted from the downloaded file from the UniFi console.
+
+**Endpoint** is the public IP address or domain name if you use a dynamic DNS for your home network, with the port on which you can access Wireguard.
+
+**AllowedIPs** is a list of all the subnets/IPs that will be routed through the VPN to your home LAN.
+
+<Caution>**AllowedIPs** should not replace a strong firewall configuration on your home network to stop connections coming from the VPS from accessing the rest of your home network.</Caution>
+
+With that done, you can start the VPN tunnel:
+
+```sh
+sudo wg-quick up wg0
+```
+
+You should now be able to ping your VPN server IP. In my case:
+
+```sh
+ping 192.168.101.1
+```
+
+You should also, from your home network, be able to ping the VPS server. Again, in my case:
+
+```sh
+ping 192.168.101.2
+```
+
+We will also enable the tunnel on startup:
+
+```sh
+sudo systemctl enable wg-quick@wg0
+sudo systemctl start wg-quick@wg0
+```
+
+You now have a tunnel that will automatically open to your home network when your VPS is online.
+
+# Protecting your Services
+
+Now it's time to run some services on your VPS that are only available on your home network while still having all the benefits of a VPS. We can't just directly bind the local IP of the VPS to a Docker Compose service. In my case, I cannot just open the port on 192.168.101.2 because, if the container/compose file runs when the VPN tunnel is not open, the local IP will not exist on the VPS, which will crash your deployment. So, we will still open the Docker port to all IPs, but we will protect it with firewall rules on the VPS. In my case, I will be using the nftables firewall.
+
+<Note>I don't recommend using UFW since Docker can *(and will)* override any UFW configuration you make.</Note>
+
+Let's edit the firewall to allow connections on port 9001 from the VPN tunnel:
+
+```sh
+# Flush rules
+sudo iptables -F DOCKER-USER
+
+# Allow connections from the VPN tunnel interface
+sudo iptables -A DOCKER-USER -i wg0 -j ACCEPT
+
+# Drop traffic on port 9001 coming from any other interface
+sudo iptables -A DOCKER-USER -p tcp --dport 9001 -j DROP
+sudo iptables -A DOCKER-USER -p udp --dport 9001 -j DROP
+
+sudo iptables -A DOCKER-USER -j RETURN
+```
+
+Once you're satisfied with your configuration, make it persistent:
+
+```sh
+sudo apt install iptables-persistent -y
+sudo netfilter-persistent save
+```
+
+You can now access the service running on your VPS via the local IP address, but you should not be able to access it from the public IP of your VPS.
+
+<Warning>You should also, in your home firewall, isolate the whole subnet so your VPSs won't be able to talk to each other through the VPN tunnel. This can be problematic if one of your VPSs is compromised and can access *secure* services only available in your LAN.</Warning>
+
+# Conclusion
+
+This is a clean way to protect some applications running on your VPS or to make backups to a local NAS easier. This setup can also be used with Nginx Proxy Manager, for example, only allowing connections on the management port (81) from your home network. It also allows you to blur the line between LAN and external VPSs to have a seamless experience with services running on a VPS.
