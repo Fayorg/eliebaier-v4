@@ -189,8 +189,8 @@ export default async function Home() {
 												</div>
 											</div>
 										</div>
-										<div className="w-full lg:min-w-[455px] lg:max-w-[455px] relative overflow-hidden lg:h-full rounded-lg aspect-video">
-											<Image src={post.image} alt={post.title} width={455} height={300} className="object-cover" />
+										<div className="w-full lg:min-w-[455px] lg:max-w-[455px] relative overflow-hidden lg:h-full rounded-lg aspect-video bg-red-500">
+											<Image src={post.image} alt={post.title} width={455} height={300} className="object-cover w-full h-full" />
 										</div>
 									</div>
 								</div>
