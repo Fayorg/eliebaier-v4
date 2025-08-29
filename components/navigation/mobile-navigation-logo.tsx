@@ -1,7 +1,7 @@
 import { Command, Menu } from 'lucide-react';
 import Link from 'next/link';
 
-export function MobileNavigationLogo({ isOpen = false, setOpen = (open: boolean) => {} }: { isOpen?: boolean; setOpen?: (open: boolean) => void }) {
+export function MobileNavigationLogo({ isOpen = false, setOpen = () => {} }: { isOpen?: boolean; setOpen?: (open: boolean) => void }) {
 	return (
 		<div>
 			<div className="hidden md:block">
