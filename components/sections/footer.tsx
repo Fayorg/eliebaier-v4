@@ -52,7 +52,7 @@ export function Footer({ includeSeparator = true }: { includeSeparator?: boolean
 									<Link href={'/blog'} className="text-white/90 hover:text-white/100 transition-all duration-200">
 										<p className="text-sm">Blog</p>
 									</Link>
-									<Link href={'https://legacy.eliebaier.ch'} className="text-white/90 hover:text-white/100 transition-all duration-200">
+									<Link href={'https://legacy.eliebaier.ch'} target="_blank" className="text-white/90 hover:text-white/100 transition-all duration-200">
 										<p className="text-sm">Legacy</p>
 									</Link>
 								</div>
