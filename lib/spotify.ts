@@ -1,6 +1,6 @@
 "server-only"
 
-type SpofityPlayerResponse = {
+type SpotifyPlayerResponseBase = {
     device: {
         id: string,
         is_active: boolean,
@@ -24,6 +24,10 @@ type SpofityPlayerResponse = {
     timestamp: number
     progress_ms: number,
     is_playing: boolean
+}
+
+type SpotifyPlayerResponseTrackItem = SpotifyPlayerResponseBase & {
+    currently_playing_type: "track",
     item: {
         artists: {
             name: string,
@@ -50,7 +54,12 @@ type SpofityPlayerResponse = {
         type: string,
         uri: string,
         is_local: boolean
-    } | {
+    }
+}
+
+type SpotifyPlayerResponseEpisodeItem = SpotifyPlayerResponseBase & {
+    currently_playing_type: "episode",
+    item: {
         description: string,
         html_description: string,
         duration_ms: number
@@ -67,9 +76,15 @@ type SpofityPlayerResponse = {
         release_date: string,
         uri: string,
         type: string
-    } | null,
-    currently_playing_type: "track" | "episode" | "ad" | "unknown",
+    }
 }
+
+type SpotifyPlayerResponseOtherItem = SpotifyPlayerResponseBase & {
+    currently_playing_type: "ad" | "unknown",
+    item: null
+}
+
+type SpotifyPlayerResponse = SpotifyPlayerResponseTrackItem | SpotifyPlayerResponseEpisodeItem | SpotifyPlayerResponseOtherItem;
 
 async function getAccessToken(): Promise<string> {
     const response = await fetch("https://accounts.spotify.com/api/token", {
@@ -87,7 +102,7 @@ async function getAccessToken(): Promise<string> {
     return response.json().then(data => data.access_token);
 }
 
-export async function getNowPlaying(): Promise<Pick<SpofityPlayerResponse, "timestamp" | "progress_ms" | "is_playing" | "repeat_state" | "shuffle_state" | "currently_playing_type"> & { item: { artists: string[], url: string, uri: string, name: string, id: string } } | null> {
+export async function getNowPlaying(): Promise<Pick<SpotifyPlayerResponse, "timestamp" | "progress_ms" | "is_playing" | "repeat_state" | "shuffle_state" | "currently_playing_type"> & { item: { artists: string[], url: string, uri: string, name: string, id: string } } | null> {
     const accessToken = await getAccessToken();
 
     const response = await fetch("https://api.spotify.com/v1/me/player", {
@@ -100,7 +115,7 @@ export async function getNowPlaying(): Promise<Pick<SpofityPlayerResponse, "time
         throw new Error("Failed to fetch currently playing track");
     }
 
-    const data = await response.json() as SpofityPlayerResponse;
+    const data = await response.json() as SpotifyPlayerResponse;
 
     if(data.device.is_private_session) return null;
 
