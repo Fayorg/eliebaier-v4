@@ -1,2 +1,4 @@
 node_modules
-app/generated/prisma
+
+# Ignore the api routes only used in development
+app/api/spotify/callback/*
