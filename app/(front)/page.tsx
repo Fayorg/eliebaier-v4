@@ -3,9 +3,9 @@ import { Footer } from '@/components/sections/footer';
 import { GithubIcon, LinkedInIcon } from '@/components/utils/icons';
 import ParticleBackground from '@/components/utils/particules-background';
 import { EliesSignature } from '@/components/utils/signature';
-import { DEPLOY, DEPLOY_GITHUB, ELIE_GITHUB, ELIE_LINKEDIN, ELIE_PROFILE_PIC, EPFL_LOGO, EPFL_PH_LINK, ERT_BLOG_POST, ERT_GITHUB, ERT_SPACE_RACE } from '@/config/links';
+import { DEPLOY, DEPLOY_GITHUB, ELIE_GITHUB, ELIE_LINKEDIN, ELIE_MAIL, ELIE_PROFILE_PIC, EPFL_LOGO, EPFL_PH_LINK, ERT_BLOG_POST, ERT_GITHUB, ERT_SPACE_RACE } from '@/config/links';
 import { getAllPosts } from '@/lib/blog/posts';
-import { ChevronRight, ChevronsLeftRightEllipsis, Rss } from 'lucide-react';
+import { ChevronRight, ChevronsLeftRightEllipsis, Mail, Rss } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -37,6 +37,12 @@ export default async function Home() {
 									<p className="text-base text-white">More about me</p>
 								</Link>
 								<div className="mt-10 flex flex-row gap-4">
+									<Link href={ELIE_MAIL} target="_blank" aria-label="Mail link">
+										<div className="text-white/80 w-5 h-5 cursor-pointer hover:text-white/100 transition-all duration-200">
+											<p className="sr-only">Email</p>
+											<Mail size={24} strokeWidth={2.4} />
+										</div>
+									</Link>
 									<Link href={ELIE_GITHUB} target="_blank" aria-label="Github link">
 										<div className="text-white/80 w-5 h-5 cursor-pointer hover:text-white/100 transition-all duration-200">
 											<p className="sr-only">Github link</p>
@@ -189,7 +195,7 @@ export default async function Home() {
 												</div>
 											</div>
 										</div>
-										<div className="w-full lg:min-w-[455px] lg:max-w-[455px] relative overflow-hidden lg:h-full rounded-lg aspect-video bg-red-500">
+										<div className="w-full lg:min-w-[455px] lg:max-w-[455px] relative overflow-hidden lg:h-full rounded-lg aspect-video">
 											<Image src={post.image} alt={post.title} width={455} height={300} className="object-cover w-full h-full" />
 										</div>
 									</div>

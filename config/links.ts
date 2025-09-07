@@ -3,6 +3,7 @@ export const ELIE_X = "";
 export const ELIE_INSTAGRAM = "";
 export const ELIE_LINKEDIN = "https://ch.linkedin.com/in/elie-baier-a59269252";
 export const ELIE_GITHUB = "https://github.com/Fayorg";
+export const ELIE_MAIL = "mailto:inquiries@eliebaier.ch"
 
 // Links
 export const EPFL_PH_LINK = 'https://www.epfl.ch/schools/sb/sph/en/';

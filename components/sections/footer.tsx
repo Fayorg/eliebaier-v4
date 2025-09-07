@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { GithubIcon, LinkedInIcon } from '../utils/icons';
-import { BLACKHOLE_VIDEO, ELIE_GITHUB, ELIE_LINKEDIN } from '@/config/links';
+import { BLACKHOLE_VIDEO, ELIE_GITHUB, ELIE_LINKEDIN, ELIE_MAIL } from '@/config/links';
+import { Mail } from 'lucide-react';
 
 export function Footer({ includeSeparator = true }: { includeSeparator?: boolean }) {
 	return (
@@ -17,6 +18,12 @@ export function Footer({ includeSeparator = true }: { includeSeparator?: boolean
 							<h3 className="font-sans text-2xl font-bold">Elie Baier</h3>
 							<p className="text-sm text-white/80">To engineer is to bring clarity to chaos - where each line of code, every design, serves a meaningful and lasting purpose</p>
 							<div className="mt-8 flex flex-row gap-4">
+								<Link href={ELIE_MAIL} target="_blank" aria-label="Mail link">
+									<div className="text-white/80 w-5 h-5 cursor-pointer hover:text-white/100 transition-all duration-200">
+										<p className="sr-only">Email</p>
+										<Mail size={24} strokeWidth={2.4} />
+									</div>
+								</Link>
 								<Link href={ELIE_GITHUB} aria-label="Elie Baier GitHub">
 									<div className="text-white/80 w-5 h-5 cursor-pointer hover:text-white/100 transition-all duration-200">
 										<GithubIcon />
