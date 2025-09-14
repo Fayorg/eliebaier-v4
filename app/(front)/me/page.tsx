@@ -90,6 +90,17 @@ export default function MePage() {
 				</div>
 			</section>
 
+			<section className="mt-32 md:mt-48 mb-12" id="quote">
+				<div className="max-w-[69rem] w-11/12 m-auto">
+					<div className="w-1/4 min-w-32 h-[2px] bg-white/80 rounded-full mx-auto mb-8" />
+					<div className="text-center">
+						<blockquote className="text-3xl font-sans font-light">The ironic tragedy is that Life has to be lived forward but only makes sense in reverse</blockquote>
+						<p className="mt-4 text-lg text-white/80 uppercase">Søren Kierkegaard</p>
+					</div>
+					<div className="w-1/4 min-w-32 h-[2px] bg-white/80 rounded-full mx-auto mt-8" />
+				</div>
+			</section>
+
 			<Footer />
 		</>
 	);
