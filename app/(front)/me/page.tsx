@@ -54,7 +54,7 @@ export default function MePage() {
 				<div className="max-w-[69rem] w-11/12 m-auto">
 					<h3 className="font-sans text-2xl uppercase flex items-center gap-2 font-bold">
 						<GraduationCap size={24} strokeWidth={2.5} />
-						My Education & Experience
+						My Education & Experiences
 					</h3>
 
 					{experiences.map((job, index) => (
@@ -67,7 +67,7 @@ export default function MePage() {
 								<div>
 									<Link href={job.link || ''} target="_blank" className={cn('flex flex-row gap-2 items-center group w-fit', job.link ? 'cursor-pointer' : 'cursor-default')}>
 										{job.logo && <Image src={job.logo} width={40} height={16} alt={job.company} style={{ transform: `scale(${job.size})` }} />}
-										<h5 className="text-lg text-white/80 flex flex-row">
+										<h5 className="text-lg text-white/80">
 											<span className="group-hover:text-white mr-1 underline underline-offset-3 decoration-white/40 group-hover:decoration-white/60">{job.company}</span> - {job.location}
 										</h5>
 									</Link>
