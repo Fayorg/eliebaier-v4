@@ -19,7 +19,7 @@ export default function MePage() {
 								<Bell size={20} strokeWidth={1.5} />
 							</Link> */}
 						</div>
-						<p className="text-lg text-white/80 mt-2">A glimpse into my journey—from building websites and managing servers in my basement to working on high-availability networks and studying physics at EPFL.</p>
+						<p className="text-lg text-white/80 mt-2">A glimpse into my journey, from building websites and managing servers in my basement to working on high-availability networks and studying physics at EPFL.</p>
 					</div>
 				</div>
 			</div>
@@ -44,7 +44,7 @@ export default function MePage() {
 								Hi, I&apos;m Elie — a physics student at EPFL with a lifelong drive to understand how things work, from the subatomic to the systemic. My journey started at age 10, when I wrote my first lines of Java on a laptop. Since then, that curiosity has evolved into a hands-on passion for computing, systems engineering, and real-world problem-solving. I’ve built websites for clients, maintained my own homelab, and worked on datacenter network infrastructure and cybersecurity during an internship. I also enjoy designing IoT devices and PCBs, blending hardware with
 								software to create innovative solutions.
 							</p>
-							<p className="text-lg text-white/80">Today, I split my time between studying physics, writing backend software, managing infrastructure, and contributing to avionics and telemetry systems for student rocketry. I’m always building something—whether it’s to learn, to solve, or to launch.</p>
+							<p className="text-lg text-white/80">Today, I split my time between studying physics, writing backend software, managing infrastructure, and contributing to avionics and telemetry systems for student rocketry. I’m always building something, whether it’s to learn, to solve, or to launch.</p>
 						</div>
 					</div>
 				</div>
@@ -86,7 +86,7 @@ export default function MePage() {
 						What&apos;s next?
 					</h3>
 
-					<p className="mt-8 text-lg text-white/80">In the coming years, I aim to launch my own startup—building products that merge engineering depth with real-world impact. I&apos;m especially interested in creating tools at the intersection of software and hardware, and I&apos;m actively exploring ideas that could grow into something meaningful, scalable, and lasting.</p>
+					<p className="mt-8 text-lg text-white/80">In the coming years, I aim to launch my own startup, building products that merge engineering depth with real-world impact. I&apos;m especially interested in creating tools at the intersection of software and hardware, and I&apos;m actively exploring ideas that could grow into something meaningful, scalable, and lasting.</p>
 				</div>
 			</section>
 

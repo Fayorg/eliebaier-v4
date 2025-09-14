@@ -62,6 +62,6 @@ export const experiences = [
 			logo: DIGITAL_CANION_LOGO,
 			size: 0.7,
 			description:
-				'During my internship at DigitalCanion, I worked on the design and maintenance of networking infrastructure across campus environments and data centers, with a strong focus on high-availability systems where zero downtime was critical. I gained hands-on experience in managing and securing complex networks, implementing best practices in cybersecurity, and troubleshooting mission-critical infrastructure. In addition to technical responsibilities, I managed a portfolio of clients with diverse requirements—ranging from small businesses to larger organizations—ensuring tailored solutions and reliable ongoing support.',
+				'During my internship at DigitalCanion, I worked on the design and maintenance of networking infrastructure across campus environments and data centers, with a strong focus on high-availability systems where zero downtime was critical. I gained hands-on experience in managing and securing complex networks, implementing best practices in cybersecurity, and troubleshooting mission-critical infrastructure. In addition to technical responsibilities, I managed a portfolio of clients with diverse requirements, ranging from small businesses to larger organizations, ensuring tailored solutions and reliable ongoing support.',
 		},
 	];
