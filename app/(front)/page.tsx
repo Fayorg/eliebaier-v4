@@ -33,9 +33,15 @@ export default async function Home() {
 								</div>
 								<h1 className="text-7xl font-extrabold font-sans mt-10">I&apos;m Elie</h1>
 								<p className="text-lg text-white/80 mt-4">I build distributed systems and developer tools, blending software with physics and rocketry to solve real-world problems with clarity and precision.</p>
-								<Link href={'/me'} className="block border-1 border-white/15 hover:border-white/35 transition-all duration-200 px-4 py-3 w-fit mt-10 rounded-xl">
-									<p className="text-base text-white">More about me</p>
-								</Link>
+								<div className="mt-10 flex items-center gap-4">
+									<Link href={'/me'} className="block border-1 border-white/15 hover:border-white/35 transition-all duration-200 px-4 py-3 w-fit rounded-xl">
+										<p className="text-base text-white">More about me</p>
+									</Link>
+									<div className="bg-red-500">
+										<p>Take Me out</p>
+										<p>Franz Ferdinand</p>
+									</div>
+								</div>
 								<div className="mt-10 flex flex-row gap-4">
 									<Link href={ELIE_MAIL} target="_blank" aria-label="Mail link">
 										<div className="text-white/80 w-5 h-5 cursor-pointer hover:text-white/100 transition-all duration-200">
