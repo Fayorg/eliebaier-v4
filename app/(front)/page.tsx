@@ -37,10 +37,10 @@ export default async function Home() {
 									<Link href={'/me'} className="block border-1 border-white/15 hover:border-white/35 transition-all duration-200 px-4 py-3 w-fit rounded-xl">
 										<p className="text-base text-white">More about me</p>
 									</Link>
-									<div className="bg-red-500">
+									{/* <div className="bg-red-500">
 										<p>Take Me out</p>
 										<p>Franz Ferdinand</p>
-									</div>
+									</div> */}
 								</div>
 								<div className="mt-10 flex flex-row gap-4">
 									<Link href={ELIE_MAIL} target="_blank" aria-label="Mail link">
