@@ -21,7 +21,7 @@ export const experiences = [
 			description: "As an intern at EPFL's Bureaux Techniques (BT), I work alongside architects and electrical engineers who oversee the maintenance and development of the campus infrastructure. My responsibilities include updating technical documentation for existing facilities and new construction projects, supporting various IT-related needs within the team, and occasionally developing custom software tools to improve internal workflows. This role allows me to gain hands-on experience in a multidisciplinary environment while earning supplementary income during my studies.",
 		},
 		{
-			title: 'Undergraduate Student in Physics',
+			title: 'Undergraduate Student in CS',
 			// company: 'École Polytechnique Fédérale de Lausanne (EPFL)',
 			company: 'EPFL',
 			location: 'Lausanne, Switzerland',
@@ -29,7 +29,7 @@ export const experiences = [
 			endDate: null,
 			logo: EPFL_LOGO,
 			link: EPFL_PH_LINK,
-			description: "I am currently pursuing a Bachelor's degree in Physics, where I explore both theoretical and applied aspects of the field. With a strong foundation in mathematics and a long-standing passion for computing and technology, I approach my studies with curiosity and a hands-on mindset. Outside of coursework, I continue to develop personal software projects, manage my own server infrastructure, and stay actively engaged in learning new technologies.",
+			description: "I am currently pursuing a Bachelor's degree in Computer Science, where I explore both theoretical and applied aspects of the field. With a strong foundation in mathematics and a long-standing passion for computing and technology, I approach my studies with curiosity and a hands-on mindset. Outside of coursework, I continue to develop personal software projects, manage my own server infrastructure, and stay actively engaged in learning new technologies.",
 		},
 		{
 			title: 'Intern - Massachusetts General Hospital',

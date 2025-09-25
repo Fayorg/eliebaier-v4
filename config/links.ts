@@ -6,7 +6,7 @@ export const ELIE_GITHUB = "https://github.com/Fayorg";
 export const ELIE_MAIL = "mailto:inquiries@eliebaier.ch"
 
 // Links
-export const EPFL_PH_LINK = 'https://www.epfl.ch/schools/sb/sph/en/';
+export const EPFL_PH_LINK = 'https://www.epfl.ch/schools/ic/fr/';
 
 // Images
 export const ELIE_PROFILE_PIC = "https://eliebaier.fra1.cdn.digitaloceanspaces.com/ELIE.jpeg";

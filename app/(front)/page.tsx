@@ -24,7 +24,7 @@ export default async function Home() {
 									<BackgroundBlurredContainer className="rounded-br-none rounded-tr-none pr-32">
 										<div className="flex flex-row items-center gap-2">
 											<div className="w-2 h-2 bg-primary rounded-full" />
-											<p className="text-sm sm:text-base text-white/80">Studying physics at </p>
+											<p className="text-sm sm:text-base text-white/80">Studying CS at </p>
 											<Link href={EPFL_PH_LINK} target={'_blank'} className="border-b-1 pb-1 translate-y-0.5 border-white/80 cursor-alias">
 												<Image alt="EPFL Logo" width={1280} height={372} src={EPFL_LOGO} className="h-3 w-auto" />
 											</Link>
@@ -90,7 +90,7 @@ export default async function Home() {
 									</div>
 								</div>
 								<div className="w-full md:w-3/5 flex flex-col gap-4">
-									<p className="text-lg text-white/80">Hi, I&apos;m Elie — a physics student based in Switzerland with a deep passion for systems, computing, and how things work at every level. </p>
+									<p className="text-lg text-white/80">Hi, I&apos;m Elie — a computer science student based in Switzerland with a deep passion for systems, computing, and how things work at every level. </p>
 									<p className="text-lg text-white/80">I began programming at age 10 and never stopped exploring. Over the years, I’ve gone from building basic websites to running a full homelab, designing distributed systems, and contributing to student rocketry as part of my university’s team. Whether I’m working on backend infrastructure, embedded avionics, or real-time telemetry, I love building tools that are reliable, scalable, and grounded in real-world engineering.</p>
 
 									<q className="text-2xl text-white/80 mt-4">

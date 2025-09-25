@@ -19,7 +19,7 @@ export default function MePage() {
 								<Bell size={20} strokeWidth={1.5} />
 							</Link> */}
 						</div>
-						<p className="text-lg text-white/80 mt-2">A glimpse into my journey, from building websites and managing servers in my basement to working on high-availability networks and studying physics at EPFL.</p>
+						<p className="text-lg text-white/80 mt-2">A glimpse into my journey, from building websites and managing servers in my basement to working on high-availability networks and studying computer science at EPFL.</p>
 					</div>
 				</div>
 			</div>
@@ -41,8 +41,8 @@ export default function MePage() {
 						</div>
 						<div className="w-full lg:w-3/5 flex flex-col gap-4 md:-mt-14">
 							<p className="text-lg text-white/80">
-								Hi, I&apos;m Elie — a physics student at EPFL with a lifelong drive to understand how things work, from the subatomic to the systemic. My journey started at age 10, when I wrote my first lines of Java on a laptop. Since then, that curiosity has evolved into a hands-on passion for computing, systems engineering, and real-world problem-solving. I’ve built websites for clients, maintained my own homelab, and worked on datacenter network infrastructure and cybersecurity during an internship. I also enjoy designing IoT devices and PCBs, blending hardware with
-								software to create innovative solutions.
+								Hi, I&apos;m Elie — a computer science student at EPFL with a lifelong drive to understand how things work, from the subatomic to the systemic. My journey started at age 10, when I wrote my first lines of Java on a laptop. Since then, that curiosity has evolved into a hands-on passion for computing, systems engineering, and real-world problem-solving. I’ve built websites for clients, maintained my own homelab, and worked on datacenter network infrastructure and cybersecurity during an internship. I also enjoy designing IoT devices and PCBs, blending hardware
+								with software to create innovative solutions.
 							</p>
 							<p className="text-lg text-white/80">Today, I split my time between studying physics, writing backend software, managing infrastructure, and contributing to avionics and telemetry systems for student rocketry. I’m always building something, whether it’s to learn, to solve, or to launch.</p>
 						</div>
