@@ -71,8 +71,8 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
 		<>
 			<main className="max-w-[69rem] w-full m-auto">
 				{image && (
-					<div className="w-full h-64 relative">
-						<Image src={image} fill alt={title} className="object-cover" priority />
+					<div className="w-full relative mt-24 rounded-t-4xl overflow-hidden" style={{ aspectRatio: '32/9' }}>
+						<Image src={image} fill alt={title} className="object-cover" priority style={{ objectPosition: 'center 85%' }} />
 						<div className="absolute w-full h-full z-10 bg-gradient-to-b from-transparent to-background" />
 					</div>
 				)}
