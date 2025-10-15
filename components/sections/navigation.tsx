@@ -40,8 +40,8 @@ const Navigation = () => {
 	const { push } = useRouter();
 
 	const navItems = [
-		{ name: 'My Work', href: '#my-work', onClick: () => push('/#my-work') },
-		{ name: 'About me', href: '#features', onClick: () => push('/me') },
+		{ name: 'Notes', href: '/notes', onClick: () => push('/notes') },
+		{ name: 'About me', href: '/me', onClick: () => push('/me') },
 	];
 
 	return (
