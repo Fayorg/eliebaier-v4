@@ -37,10 +37,10 @@ export default function NotesPages() {
 										<div className="flex justify-between">
 											<p>Notes</p>
 											<div className="flex items-center gap-2">
-												<Link href={'https://eliebaier.fra1.digitaloceanspaces.com/notes/' + course.code + '-dark.pdf'}>
+												<Link target={'_blank'} href={'https://eliebaier.fra1.digitaloceanspaces.com/notes/' + course.code + '-dark.pdf'}>
 													<Moon size={18} />
 												</Link>
-												<Link href={'https://eliebaier.fra1.digitaloceanspaces.com/notes/' + course.code + '.pdf'}>
+												<Link target={'_blank'} href={'https://eliebaier.fra1.digitaloceanspaces.com/notes/' + course.code + '.pdf'}>
 													<Sun size={18} />
 												</Link>
 											</div>
