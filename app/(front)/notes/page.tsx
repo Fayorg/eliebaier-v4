@@ -1,5 +1,5 @@
 import { GithubIcon } from '@/components/utils/icons';
-import { NOTES_REPO_URL } from '@/config/notes';
+import { CLASSES, NOTES_REPO_URL } from '@/config/notes';
 import Link from 'next/link';
 
 export default function NotesPages() {
@@ -17,13 +17,27 @@ export default function NotesPages() {
 						<p className="text-lg text-white/80 mt-2">Here I share my LaTeX-written notes from EPFL, reflecting the challenges and progress of studying computer science, physics, and mathematics.</p>
 					</div>
 				</div>
-			</div>
 
-			<div className="max-w-[69rem] w-11/12 m-auto pt-8 mt-12">
-				<div className="w-full h-4 bg-gray-500 rounded-xl relative">
-					<div className="absolute w-24 h-4 bg-white rounded-xl right-0 rotate-45 -translate-y-7 translate-x-3" />
-					<div className="absolute w-24 h-4 bg-white rounded-xl right-0 -rotate-45 translate-y-7 translate-x-3" />
-					<div className="w-5 h-5 absolute right-0 rounded-full -translate-y-0.5 border-2 border-background translate-x-[1px]" />
+				<div className="mt-8">
+					{/* <h2 className="text-3xl md:text-4xl font-sans">BA 1</h2> */}
+					<div className="mt-4 grid grid-cols-3 gap-4">
+						{CLASSES.map((course) => {
+							return (
+								<div key={course.code} className="border-[1px] border-white/60 rounded-sm">
+									<div className="border-white/60 border-b-[1px] px-4 py-2 min-h-32 flex flex-row items-end">
+										<h3 className="text-white/80">
+											<span className="font-semibold text-white">{course.name}</span> - {course.code}
+										</h3>
+									</div>
+									<div className="px-4 py-2">
+										<div>
+											<p>Notes</p>
+										</div>
+									</div>
+								</div>
+							);
+						})}
+					</div>
 				</div>
 			</div>
 		</>
