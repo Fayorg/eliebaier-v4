@@ -1,5 +1,6 @@
 import { GithubIcon } from '@/components/utils/icons';
 import { CLASSES, NOTES_REPO_URL } from '@/config/notes';
+import { Moon, Sun } from 'lucide-react';
 import Link from 'next/link';
 
 export default function NotesPages() {
@@ -20,18 +21,29 @@ export default function NotesPages() {
 
 				<div className="mt-8">
 					{/* <h2 className="text-3xl md:text-4xl font-sans">BA 1</h2> */}
-					<div className="mt-4 grid grid-cols-3 gap-4">
+					<div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 						{CLASSES.map((course) => {
 							return (
 								<div key={course.code} className="border-[1px] border-white/60 rounded-sm">
-									<div className="border-white/60 border-b-[1px] px-4 py-2 min-h-32 flex flex-row items-end">
+									<div className="relative border-white/60 border-b-[1px] px-4 py-2 min-h-32 flex flex-row items-end">
+										<div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
+											<course.background />
+										</div>
 										<h3 className="text-white/80">
-											<span className="font-semibold text-white">{course.name}</span> - {course.code}
+											<span className="font-semibold text-white">{course.name}</span> &bull; {course.code} &bull; {course.semester}
 										</h3>
 									</div>
 									<div className="px-4 py-2">
-										<div>
+										<div className="flex justify-between">
 											<p>Notes</p>
+											<div className="flex items-center gap-2">
+												<Link href={'https://eliebaier.fra1.digitaloceanspaces.com/notes/' + course.code + '-dark.pdf'}>
+													<Moon size={18} />
+												</Link>
+												<Link href={'https://eliebaier.fra1.digitaloceanspaces.com/notes/' + course.code + '.pdf'}>
+													<Sun size={18} />
+												</Link>
+											</div>
 										</div>
 									</div>
 								</div>
