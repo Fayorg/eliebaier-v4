@@ -14,20 +14,35 @@ export type Post = {
     content: string,
     include?: IncludeType[],
 }
-
 export type IncludeType = 'math' | 'code';
 
+function listPostDirectories(): string[] {
+    return fs.readdirSync(postsDirectory).filter((file) => {
+        return fs.lstatSync(path.join(postsDirectory, file)).isDirectory();
+    });
+}
+
+function getRawPostContent(slug: string): string {
+    const mdFilesList = fs.readdirSync(path.join(postsDirectory, slug)).filter((file) => file.endsWith('.md') || file.endsWith('.mdx'));
+    if (mdFilesList.length === 0) {
+        throw new Error(`No markdown file found for post: ${slug}`);
+    }
+    const fullPath = path.join(postsDirectory, slug, mdFilesList[0]);
+    return fs.readFileSync(fullPath, 'utf8');
+}
+
+function doesSlugExist(slug: string): boolean {
+    const postDirectories = listPostDirectories();
+    return postDirectories.includes(slug);
+}
+
 export function getAllPosts(): Post[] {
-    const fileNames = fs.readdirSync(postsDirectory);
-
-    const allPostsData = fileNames.map((fileName) => {
-        const slug = fileName.replace(/\.(md|mdx)$/, '');
-
-        const fullPath = path.join(postsDirectory, fileName);
-        const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const postDirectories = listPostDirectories();
+    const allPostsData = postDirectories.map((dir) => {
+        const slug = dir;
+        const fileContents = getRawPostContent(dir);
 
         const { data: frontmatter, content } = matter(fileContents);
-
         return {
             slug,
             content,
@@ -43,31 +58,17 @@ export function getAllPosts(): Post[] {
         };
     });
 
-    return allPostsData.filter((post) => {
-        if(post.visible == false && !(process.env.NODE_ENV === 'development')) {
-            return false;
-        }
-        return true;
-    }).sort((a, b) => {
-        return b.date.getTime() - a.date.getTime();
-    });
+    return allPostsData
+        .filter(post => post.visible || process.env.NODE_ENV === 'development')
+        .sort((a, b) => b.date.getTime() - a.date.getTime());
 }
 
 export function getPostBySlug(slug: string): Post | null {
-    const fullPathMD = path.join(postsDirectory, `${slug}.md`);
-    const fullPathMDX = path.join(postsDirectory, `${slug}.mdx`);
-
-    let fullPath;
-    if (fs.existsSync(fullPathMD)) {
-        fullPath = fullPathMD;
-    } else if (fs.existsSync(fullPathMDX)) {
-        fullPath = fullPathMDX;
-    } else {
+    if (!doesSlugExist(slug)) {
         return null;
     }
 
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
-
+    const fileContents = getRawPostContent(slug);
     const { data: frontmatter, content } = matter(fileContents);
 
     if((!frontmatter.visible && process.env.NODE_ENV !== 'development') || frontmatter.visible === false && !(process.env.NODE_ENV === 'development')) {
