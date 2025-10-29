@@ -104,7 +104,7 @@ function BlogPostFeaturedCard({ title, description, imageUrl, createdAt, readDur
 export const metadata = {
 	title: 'Blog — Elie Baier',
 	description: 'A place for thoughts too big to keep in my head — about how things scale, fly, and sometimes fail. Shared in the spirit of learning out loud.',
-	keywords: ['Elie Baier blog', 'Engineering blog', 'Physics blog', 'Systems design', 'Avionics', 'IoT projects', 'Embedded systems', 'Startup notes', 'Telemetry', 'Homelab', 'Tech writing', 'Learning in public'],
+	keywords: ['Elie Baier blog', 'Engineering blog', 'Computer Science blog', 'Systems design', 'Avionics', 'IoT projects', 'Embedded systems', 'Startup notes', 'Telemetry', 'Homelab', 'Tech writing', 'Learning in public'],
 	authors: [{ name: 'Elie Baier', url: 'https://eliebaier.ch' }],
 	creator: 'Elie Baier',
 	metadataBase: new URL('https://eliebaier.ch'),

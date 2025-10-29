@@ -108,8 +108,8 @@ export default function MePage() {
 
 export const metadata = {
 	title: 'About — Elie Baier',
-	description: 'Learn more about Elie Baier — a physics student at EPFL with a passion for systems engineering, avionics, IoT, and building things that last.',
-	keywords: ['Elie Baier', 'About Elie', 'EPFL student', 'Physics student', 'Systems engineering', 'Avionics', 'IoT', 'Homelab', 'PCBs', 'Cybersecurity', 'Embedded systems', 'Full-stack developer', 'Self-hosting', 'Startup journey'],
+	description: 'Learn more about Elie Baier — a computer science student at EPFL with a passion for systems engineering, avionics, IoT, and building things that last.',
+	keywords: ['Elie Baier', 'About Elie', 'EPFL student', 'Computer science student', 'Systems engineering', 'Avionics', 'IoT', 'Homelab', 'PCBs', 'Cybersecurity', 'Embedded systems', 'Full-stack developer', 'Self-hosting', 'Startup journey'],
 	authors: [{ name: 'Elie Baier', url: 'https://eliebaier.ch' }],
 	creator: 'Elie Baier',
 	metadataBase: new URL('https://eliebaier.ch'),
@@ -132,7 +132,7 @@ export const metadata = {
 	twitter: {
 		card: 'summary_large_image',
 		title: 'About — Elie Baier',
-		description: 'Physics student at EPFL building systems that scale. Learn more about my work, projects, and what drives me.',
+		description: 'Computer science student at EPFL building systems that scale. Learn more about my work, projects, and what drives me.',
 		images: [ELIE_PROFILE_PIC],
 	},
 };

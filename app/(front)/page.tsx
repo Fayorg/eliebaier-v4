@@ -219,14 +219,14 @@ export default async function Home() {
 }
 
 export const metadata = {
-	title: 'Elie — Physics Student, Engineer & Builder',
-	description: 'Elie is a physics student at EPFL with a passion for building systems that scale—from backend infrastructure to avionics and IoT. This is his digital lab, where code, hardware, and curiosity meet.',
-	keywords: ['Elie', 'Physics student', 'EPFL', 'Portfolio', 'Avionics', 'IoT', 'Telemetry', 'Distributed systems', 'Networking', 'Full-stack developer', 'Homelab', 'Cybersecurity', 'Startup', 'Embedded systems', 'Software engineer', 'PCBs', 'Open source'],
+	title: 'Elie — Computer Science Student, Engineer & Builder',
+	description: 'Elie is a computer science student at EPFL with a passion for building systems that scale—from backend infrastructure to avionics and IoT. This is his digital lab, where code, hardware, and curiosity meet.',
+	keywords: ['Elie', 'Computer science student', 'EPFL', 'Portfolio', 'Avionics', 'IoT', 'Telemetry', 'Distributed systems', 'Networking', 'Full-stack developer', 'Homelab', 'Cybersecurity', 'Startup', 'Embedded systems', 'Software engineer', 'PCBs', 'Open source'],
 	authors: [{ name: 'Elie', url: 'https://eliebaier.ch' }],
 	creator: 'Elie',
 	metadataBase: new URL('https://eliebaier.ch'),
 	openGraph: {
-		title: 'Elie — Physics Student, Engineer & Builder',
+		title: 'Elie — Computer Science Student, Engineer & Builder',
 		description: 'From homelabs to high-altitude rockets, Elie builds systems that work — and last. Explore projects in physics, avionics, infrastructure, and more.',
 		url: 'https://eliebaier.ch',
 		siteName: "Elie's Portfolio",
@@ -235,7 +235,7 @@ export const metadata = {
 				url: ELIE_PROFILE_PIC,
 				width: 1200,
 				height: 1200,
-				alt: 'Elie — Physics Student, Engineer & Builder',
+				alt: 'Elie — Computer Science Student, Engineer & Builder',
 			},
 		],
 		locale: 'en_US',
@@ -243,8 +243,8 @@ export const metadata = {
 	},
 	twitter: {
 		card: 'summary_large_image',
-		title: 'Elie — Physics Student, Engineer & Builder',
-		description: 'Physics student at EPFL with a passion for systems, rockets, IoT, and startups. Dive into projects that blend software, hardware, and ambition.',
+		title: 'Elie — Computer Science Student, Engineer & Builder',
+		description: 'Computer science student at EPFL with a passion for systems, rockets, IoT, and startups. Dive into projects that blend software, hardware, and ambition.',
 		images: [ELIE_PROFILE_PIC],
 	},
 };

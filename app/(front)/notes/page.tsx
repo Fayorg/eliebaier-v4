@@ -1,4 +1,5 @@
 import { GithubIcon } from '@/components/utils/icons';
+import { ELIE_PROFILE_PIC } from '@/config/links';
 import { CLASSES, NOTES_REPO_URL } from '@/config/notes';
 import { Moon, Sun } from 'lucide-react';
 import Link from 'next/link';
@@ -55,3 +56,34 @@ export default function NotesPages() {
 		</>
 	);
 }
+
+export const metadata = {
+	title: 'Notes — Elie Baier',
+	description: 'Notes from Elie Baier — a computer science student at EPFL with a passion for systems engineering, avionics, IoT, and building things that last.',
+	keywords: ['Elie Baier', 'Notes Elie', 'EPFL student', 'Computer science student', 'Systems engineering', 'Avionics', 'IoT', 'Homelab', 'PCBs', 'Cybersecurity', 'Embedded systems', 'Full-stack developer', 'Self-hosting', 'Startup journey'],
+	authors: [{ name: 'Elie Baier', url: 'https://eliebaier.ch' }],
+	creator: 'Elie Baier',
+	metadataBase: new URL('https://eliebaier.ch'),
+	openGraph: {
+		title: 'Notes — Elie Baier',
+		description: "Hi, I'm Elie — a student, builder, and engineer. From coding at 10 to developing real-time avionics and dreaming of my own startup, this is my journey.",
+		url: 'https://eliebaier.ch/notes',
+		siteName: 'Elie Baier',
+		images: [
+			{
+				url: ELIE_PROFILE_PIC,
+				width: 1200,
+				height: 1200,
+				alt: 'Elie Baier — Notes',
+			},
+		],
+		locale: 'en_US',
+		type: 'profile',
+	},
+	twitter: {
+		card: 'summary_large_image',
+		title: 'Notes — Elie Baier',
+		description: 'Computer science student at EPFL building systems that scale. Learn more about my work, projects, and what drives me.',
+		images: [ELIE_PROFILE_PIC],
+	},
+};
