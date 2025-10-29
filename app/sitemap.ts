@@ -3,7 +3,6 @@ import type { MetadataRoute } from 'next'
  
 export default function sitemap(): MetadataRoute.Sitemap {
     const posts = getAllPosts();
-    posts.filter((post) => post);
 
   return [
     {
@@ -17,6 +16,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
+    },
+    {
+      url: 'https://eliebaier.ch/notes',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
     },
     {
       url: 'https://eliebaier.ch/blog',

@@ -19,8 +19,11 @@ export type IncludeType = 'math' | 'code';
 
 export function getAllPosts(): Post[] {
     const fileNames = fs.readdirSync(postsDirectory);
+    const validFileNames = fileNames.filter((fileName) => {
+        return fileName.endsWith('.md') || fileName.endsWith('.mdx');
+    });
 
-    const allPostsData = fileNames.map((fileName) => {
+    const allPostsData = validFileNames.map((fileName) => {
         const slug = fileName.replace(/\.(md|mdx)$/, '');
 
         const fullPath = path.join(postsDirectory, fileName);
