@@ -27,6 +27,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" className="scroll-smooth">
+			<head>
+				<meta name="apple-mobile-web-app-title" content="Elie Baier" />
+			</head>
 			<body className={`${bricolageGrotesque.variable} ${manrope.variable} antialiased`}>
 				<Script src="https://tracking.eliebaier.ch/api/script.js" data-site-id="2" strategy="afterInteractive" />
 				<ReactLenis
