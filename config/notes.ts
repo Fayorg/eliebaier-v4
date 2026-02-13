@@ -26,5 +26,26 @@ export const CLASSES = [
         semester: "BA 1",
         ects: 0,
         background: Math111Background
+    },
+    {
+        name: "Advanced Information, Computation, Communication II",
+        code: "COM-102",
+        semester: "BA 2",
+        ects: 0,
+        background: Math111Background
+    },
+    {
+        name: "Analysis II",
+        code: "MATH-106",
+        semester: "BA 2",
+        ects: 0,
+        background: Math111Background
+    },
+    {
+        name: "Fundamentals of Digital Systems",
+        code: "CS-173",
+        semester: "BA 2",
+        ects: 0,
+        background: Math111Background
     }
 ]
