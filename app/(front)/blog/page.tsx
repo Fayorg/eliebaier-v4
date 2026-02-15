@@ -5,6 +5,7 @@ import Link from 'next/link';
 import AllPostsComponent from './all-posts';
 import { ELIE_PROFILE_PIC } from '@/config/links';
 import { getAllPosts } from '@/lib/blog/posts';
+import SubscribeButton from './subscribe-button';
 
 export default async function BlogPage() {
 	const featured = getAllPosts();
@@ -17,17 +18,17 @@ export default async function BlogPage() {
 					<div className="w-full md:w-7/12">
 						<div className="flex flex-row justify-between items-center">
 							<h1 className="font-sans text-4xl md:text-5xl">Elie&apos;s Blog</h1>
-							<Link href={'#'} className="block md:hidden text-white/80 hover:text-white/100 transition-all duration-200 border-1 border-white/15 hover:border-white/35 px-2 py-2 rounded-full">
+							<SubscribeButton className="flex md:hidden">
 								<Bell size={20} strokeWidth={1.5} />
-							</Link>
+							</SubscribeButton>
 						</div>
-						<p className="text-lg text-white/80 mt-2">A place for thoughts too big to keep in my head - about how things scale, fly, and sometimes fail. Shared in the spirit of learning out loud.</p>
+						<p className="text-lg text-white/80 mt-2">A place for thoughts too big to keep in my head about how things scale, fly, and sometimes fail. Shared in the spirit of learning out loud.</p>
 					</div>
 					<div className="hidden md:block">
-						<Link href={'#'} className="border-1 border-white/15 hover:border-white/35 transition-all duration-200 px-4 py-3 w-fit mt-10 rounded-xl flex gap-2 items-center">
+						<SubscribeButton className="hidden md:flex">
 							<p className="text-base text-white">Subscribe</p>
 							<Bell size={20} strokeWidth={1.5} />
-						</Link>
+						</SubscribeButton>
 					</div>
 				</div>
 

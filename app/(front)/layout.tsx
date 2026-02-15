@@ -4,6 +4,7 @@ import './globals.css';
 import ReactLenis from 'lenis/react';
 import Navigation from '@/components/sections/navigation';
 import Script from 'next/script';
+import { Toaster } from 'sonner';
 
 const bricolageGrotesque = Bricolage_Grotesque({
 	variable: '--font-bri-sans',
@@ -40,6 +41,14 @@ export default function RootLayout({
 					}}
 				>
 					<>
+						<Toaster
+							toastOptions={{
+								style: {
+									border: 'border-red-500',
+								},
+							}}
+							theme="light"
+						/>
 						<Navigation />
 					</>
 					{children}
