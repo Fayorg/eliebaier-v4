@@ -37,7 +37,7 @@ export default async function BlogPage() {
 						<h2 className="text-3xl md:text-4xl font-sans">Featured posts</h2>
 						<div className="mt-4 flex flex-col gap-6">
 							{featured.map((post) => (
-								<BlogPostFeaturedCard key={post.slug} title={post.title} description={post.description} imageUrl={post.image} createdAt={post.date} readDuration={post.readDuration} slug={post.slug} />
+								<BlogPostFeaturedCard key={post.slug} title={post.title} description={post.description} imageUrl={post.image} createdAt={post.date} readDuration={post.readDuration} slug={post.slug} visible={post.visible} />
 							))}
 						</div>
 					</div>
@@ -65,7 +65,7 @@ export default async function BlogPage() {
 	);
 }
 
-function BlogPostFeaturedCard({ title, description, imageUrl, createdAt, readDuration, slug }: { title: string; description: string; imageUrl: string; createdAt: Date; readDuration: string; slug: string }) {
+function BlogPostFeaturedCard({ title, description, imageUrl, createdAt, readDuration, slug, visible }: { title: string; description: string; imageUrl: string; createdAt: Date; readDuration: string; slug: string; visible: boolean }) {
 	return (
 		<Link className="w-full flex flex-col md:flex-row gap-2 md:gap-8 justify-start" href={`/blog/${slug}`}>
 			<div className="relative aspect-video w-full md:h-42 rounded-2xl overflow-hidden md:w-[298px]">
@@ -76,6 +76,7 @@ function BlogPostFeaturedCard({ title, description, imageUrl, createdAt, readDur
 						<p className="text-sm text-white">{readDuration}</p>
 					</div>
 				</div>
+				{!visible && process.env.NODE_ENV === 'development' && <div className="absolute w-2 h-2 bg-red-500 top-2 left-2"></div>}
 			</div>
 			<div className="flex flex-col justify-between mt-1 mb-2 w-full md:max-w-[calc(100%-306px)]">
 				<div>

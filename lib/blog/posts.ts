@@ -13,6 +13,7 @@ export type Post = {
     readDuration: string,
     content: string,
     include?: IncludeType[],
+    visible: boolean,
 }
 
 export type IncludeType = 'math' | 'code';
@@ -86,6 +87,7 @@ export function getPostBySlug(slug: string): Post | null {
             date: new Date(frontmatter.date) || new Date(),
             readDuration: frontmatter.read || '0 min',
             include: frontmatter.include || [],
+            visible: frontmatter.visible !== undefined ? frontmatter.visible : false,
         },
         content,
     };
