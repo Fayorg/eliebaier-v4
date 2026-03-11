@@ -41,11 +41,11 @@ export const CLASSES = [
         ects: 0,
         background: Math111Background
     },
-    {
-        name: "Fundamentals of Digital Systems",
-        code: "CS-173",
-        semester: "BA 2",
-        ects: 0,
-        background: Math111Background
-    }
+    // {
+    //     name: "Fundamentals of Digital Systems",
+    //     code: "CS-173",
+    //     semester: "BA 2",
+    //     ects: 0,
+    //     background: Math111Background
+    // }
 ]
